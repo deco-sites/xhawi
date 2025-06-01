@@ -61,6 +61,14 @@
 		<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66669 0.484863L12.7576 5.57579C12.9919 5.81011 12.9919 6.19001 12.7576 6.42432L7.66669 11.5153L6.81816 10.6667L10.8848 6.60006H0.400024V5.40006H10.8848L6.81816 1.33339L7.66669 0.484863Z" fill="currentColor"/>
 	</symbol>
 
+	<!-- Arrow Up -->
+	<symbol id="arrow-up" viewBox="0 0 24 24" fill="none"
+		xmlns="http://www.w3.org/2000/svg">
+		<g id="icon/arrow-up">
+			<path id="Icon (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M12.6366 4.3637C12.2851 4.01223 11.7152 4.01223 11.3638 4.3637L3.72737 12.0001L5.00016 13.2729L11.1002 7.17289L11.1002 19.9001H12.9002L12.9002 7.17289L19.0002 13.2729L20.2729 12.0001L12.6366 4.3637Z" fill="currentColor"/>
+		</g>
+	</symbol>
+
 	<!-- Search MD -->
 	<symbol id="search-md" viewBox="0 0 16 16" fill="none"
 		xmlns="http://www.w3.org/2000/svg">

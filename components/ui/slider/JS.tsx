@@ -17,54 +17,71 @@ export interface Props {
    */
   interval?: number;
   infinite?: boolean;
+  /**
+   * @description Whether to center the slides if they are not scrollable
+   */
+  centerIfNotScrollable?: boolean;
 }
 
 const setup = (
   {
     rootId,
-    infinite,
-    align,
-    interval,
+    infinite = false,
+    align = "start",
+    interval = 0,
+    centerIfNotScrollable = false,
   }: Props,
 ) => {
-  const root = document.getElementById(rootId);
-  if (!root) {
-    throw new Error(`Root element with id ${rootId} not found`);
-  }
+  function setupEmbla() {
+    const root = document.getElementById(rootId);
+    if (!root) {
+      throw new Error(`Root element with id ${rootId} not found`);
+    }
 
-  const viewport = root.querySelector<HTMLElement>("[data-viewport]");
-  if (!viewport) {
-    throw new Error(`Viewport element with data-viewport not found`);
-  }
+    const viewport = root.querySelector<HTMLElement>("[data-viewport]");
+    if (!viewport) {
+      throw new Error(`Viewport element with data-viewport not found`);
+    }
+    const carousel = root.querySelector<HTMLElement>(
+      "[data-slider]",
+    );
 
-  const nextButton = root.querySelector("[data-slide='next']");
-  const prevButton = root.querySelector("[data-slide='prev']");
-  const dots = root.querySelector("[data-dots]");
+    const nextButton = root.querySelector<HTMLButtonElement>(
+      "[data-slide='next']",
+    );
+    const prevButton = root.querySelector<HTMLButtonElement>(
+      "[data-slide='prev']",
+    );
 
-  const autoplay = interval && interval > 0
-    ? EmblaCarouselAutoplay({ stopOnInteraction: false, delay: interval })
-    : null;
-  const plugins = [autoplay].filter((plugin) => plugin !== null);
-  const embla = EmblaCarousel(viewport, {
-    loop: infinite,
-    align,
-    slidesToScroll: "auto",
-  }, plugins);
+    const dots = root.querySelector("[data-dots]");
 
-  prevButton?.addEventListener("click", () => {
-    autoplay?.reset();
-    embla.scrollPrev();
-  }, false);
-  nextButton?.addEventListener("click", () => {
-    autoplay?.reset();
-    embla.scrollNext();
-  }, false);
+    const autoplay = interval && interval > 0
+      ? EmblaCarouselAutoplay({ stopOnInteraction: false, delay: interval })
+      : null;
+    const plugins = [autoplay].filter((plugin) => plugin !== null);
+    const embla = EmblaCarousel(viewport, {
+      loop: infinite,
+      align,
+      slidesToScroll: "auto",
+    }, plugins);
 
-  if (dots) {
+    prevButton?.addEventListener("click", () => {
+      autoplay?.reset();
+      embla.scrollPrev();
+    }, false);
+    nextButton?.addEventListener("click", () => {
+      autoplay?.reset();
+      embla.scrollNext();
+    }, false);
+
     let dotNodes: HTMLElement[] = [];
-    const dotElement = dots.innerHTML;
 
     const setupDots = (): void => {
+      if (!dots) {
+        return;
+      }
+
+      const dotElement = dots.innerHTML;
       dots.innerHTML = embla
         .scrollSnapList()
         .map(() => dotElement)
@@ -84,18 +101,59 @@ const setup = (
     };
 
     const toggleActiveDot = (): void => {
+      if (!dotNodes.length) {
+        return;
+      }
+
       const previous = embla.previousScrollSnap();
       const selected = embla.selectedScrollSnap();
       dotNodes[previous]?.removeAttribute("data-selected");
       dotNodes[selected]?.setAttribute("data-selected", "");
     };
 
+    const updateButtons = () => {
+      const canScrollPrev = embla.canScrollPrev();
+      const canScrollNext = embla.canScrollNext();
+
+      if (prevButton) {
+        prevButton.disabled = !canScrollPrev;
+      }
+      if (nextButton) {
+        nextButton.disabled = !canScrollNext;
+      }
+    };
+
+    const onInit = () => {
+      setupDots();
+      toggleActiveDot();
+      updateButtons();
+    };
+
+    const onSelect = () => {
+      toggleActiveDot();
+      updateButtons();
+    };
+
+    const onSlidesInView = () => {
+      if (
+        centerIfNotScrollable && carousel &&
+        embla.scrollSnapList().length < embla.slidesInView().length
+      ) {
+        carousel.classList.add("justify-center");
+      }
+    };
+
     embla
-      .on("init", setupDots)
-      .on("reInit", setupDots)
-      .on("init", toggleActiveDot)
-      .on("reInit", toggleActiveDot)
-      .on("select", toggleActiveDot);
+      .on("init", onInit)
+      .on("reInit", onInit)
+      .on("slidesInView", onSlidesInView)
+      .on("select", onSelect);
+  }
+
+  if (document.readyState === "complete") {
+    setupEmbla();
+  } else {
+    document.addEventListener("DOMContentLoaded", setupEmbla);
   }
 };
 

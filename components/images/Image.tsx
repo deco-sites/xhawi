@@ -8,12 +8,19 @@ export interface ImageProps {
   height?: number;
 }
 
+export interface ImagePropsWithAlt {
+  src: ImageWidget;
+  width?: number;
+  height?: number;
+  alt?: string;
+}
+
 type ResponsiveSources = {
   desktop: ImageProps & { media?: string };
   mobile: ImageProps & { media?: string };
   className?: string;
 };
-type Sources = ImageProps | ResponsiveSources;
+type Sources = ImagePropsWithAlt | ResponsiveSources;
 
 interface Props {
   sources: Sources;
@@ -35,6 +42,7 @@ export default function Image({
   class: className,
 }: Props) {
   if (
+    !sources ||
     (isResponsive(sources) && !sources.desktop.src && !sources.mobile.src) ||
     (!isResponsive(sources) && !sources.src)
   ) {
@@ -77,7 +85,7 @@ export default function Image({
     <DecoImage
       className={className}
       src={sources.src}
-      alt={alt}
+      alt={sources?.alt || alt}
       width={sources.width || 0}
       height={sources.height}
     />
