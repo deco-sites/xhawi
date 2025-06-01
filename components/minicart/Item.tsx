@@ -1,10 +1,9 @@
+import { useScript } from "@deco/deco/hooks";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import { clx } from "../../sdk/clx.ts";
 import { formatPrice } from "../../sdk/format.ts";
-import Icon from "../ui/Icon.tsx";
 import QuantitySelector from "../ui/QuantitySelector.tsx";
-import { useScript } from "@deco/deco/hooks";
 export type Item = AnalyticsItem & {
   listPrice: number;
   image: string;
@@ -51,13 +50,14 @@ function CartItem({ item, index, locale, currency }: Props) {
         <div class="flex justify-between items-center">
           <legend>{name}</legend>
           <button
+            type="button"
             class={clx(
               isGift && "hidden",
               "btn btn-ghost btn-square no-animation",
             )}
             hx-on:click={useScript(removeItemHandler)}
           >
-            <Icon id="trash" size={24} />
+            {/* <Icon id="trash" size={24} /> */}
           </button>
         </div>
 

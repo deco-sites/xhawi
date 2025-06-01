@@ -9,8 +9,8 @@
   }
 
   /** Remove default styles from input[type=number] */
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -93,7 +93,7 @@
     @apply absolute right-0 top-[-72px] h-12;
   }
 
-  [dir='rtl'] .custom-button {
+  [dir="rtl"] .custom-button {
     @apply left-0 right-auto;
   }
 
@@ -177,16 +177,15 @@
   0% {
     opacity: var(--tw-enter-opacity, 1);
     transform: translate3d(
-        var(--tw-enter-translate-x, 0),
-        var(--tw-enter-translate-y, 0),
-        0
-      )
+      var(--tw-enter-translate-x, 0),
+      var(--tw-enter-translate-y, 0),
+      0
+    )
       scale3d(
         var(--tw-enter-scale, 1),
         var(--tw-enter-scale, 1),
         var(--tw-enter-scale, 1)
-      )
-      rotate(var(--tw-enter-rotate, 0));
+      ) rotate(var(--tw-enter-rotate, 0));
   }
 }
 
@@ -194,15 +193,14 @@
   to {
     opacity: var(--tw-exit-opacity, 1);
     transform: translate3d(
-        var(--tw-exit-translate-x, 0),
-        var(--tw-exit-translate-y, 0),
-        0
-      )
+      var(--tw-exit-translate-x, 0),
+      var(--tw-exit-translate-y, 0),
+      0
+    )
       scale3d(
         var(--tw-exit-scale, 1),
         var(--tw-exit-scale, 1),
         var(--tw-exit-scale, 1)
-      )
-      rotate(var(--tw-exit-rotate, 0));
+      ) rotate(var(--tw-exit-rotate, 0));
   }
 }

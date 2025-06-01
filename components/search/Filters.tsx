@@ -34,12 +34,12 @@ function FilterValues({ key, values }: FilterToggle) {
 
   return (
     <ul class={clx(`flex flex-wrap gap-2`, flexDirection)}>
-      {values.map((item) => {
+      {values.map((item, index) => {
         const { url, selected, value } = item;
 
         if (avatars) {
           return (
-            <a href={url} rel="nofollow">
+            <a key={index} href={url} rel="nofollow">
               <Avatar
                 content={value}
                 variant={selected ? "active" : "default"}
@@ -53,13 +53,14 @@ function FilterValues({ key, values }: FilterToggle) {
 
           return range && (
             <ValueItem
+              key={index}
               {...item}
               label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
             />
           );
         }
 
-        return <ValueItem {...item} />;
+        return <ValueItem key={index} {...item} />;
       })}
     </ul>
   );

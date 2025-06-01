@@ -41,7 +41,7 @@ function CategoryGrid({ title, cta, items }: Props) {
       {device === "desktop"
         ? (
           <div class="grid grid-cols-6 gap-10">
-            {items.map((i) => <Card {...i} />)}
+            {items.map((i, index) => <Card key={index} {...i} />)}
           </div>
         )
         : (
@@ -55,7 +55,7 @@ function CategoryGrid({ title, cta, items }: Props) {
                   "last:pr-5 last:sm:pr-0",
                 )}
               >
-                <Card {...i} />
+                <Card key={index} {...i} />
               </Slider.Item>
             ))}
           </Slider>

@@ -15,6 +15,7 @@ export default function Navbar() {
         >
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R1dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -48,6 +49,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R2dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -81,6 +83,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R3dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -114,6 +117,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R4dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -147,6 +151,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R5dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -180,6 +185,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R6dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -213,6 +219,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R7dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -246,6 +253,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R8dhsva:"
               data-state="closed"
               aria-expanded="false"
@@ -279,6 +287,7 @@ export default function Navbar() {
           </li>
           <li class="level-1-category flex-wrap">
             <button
+              type="button"
               id="radix-:R1hsva:-trigger-radix-:R9dhsva:"
               data-state="closed"
               aria-expanded="false"

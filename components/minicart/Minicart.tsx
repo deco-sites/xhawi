@@ -22,7 +22,7 @@ export interface Minicart {
   };
 }
 
-const onLoad = (formID: string) => {
+const _onLoad = (formID: string) => {
   const form = document.getElementById(formID) as HTMLFormElement;
   window.STOREFRONT.CART.dispatch(form);
   // view_cart event
@@ -57,7 +57,7 @@ const onLoad = (formID: string) => {
   );
 };
 
-const sendBeginCheckoutEvent = () => {
+const _sendBeginCheckoutEvent = () => {
   window.DECO.events.dispatch({
     name: "being_checkout",
     params: window.STOREFRONT.CART.getCart(),
@@ -82,6 +82,7 @@ export function ErrorFallback() {
       </div>
 
       <button
+        type="button"
         class="btn btn-primary"
         hx-patch={useComponent(import.meta.url)}
         hx-swap="outerHTML"
@@ -93,7 +94,7 @@ export function ErrorFallback() {
   );
 }
 
-export default function Cart(props: { cart: Minicart }) {
+export default function Cart(_props: { cart: Minicart }) {
   return (
     <>
       <Popup.Backdrop controlledBy={MINICART_POPUP_ID} />
