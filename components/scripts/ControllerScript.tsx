@@ -1,6 +1,6 @@
 import { useScript } from "@deco/deco/hooks";
 
-export default function PopableScript() {
+export default function ControllerScript() {
   return (
     <script
       dangerouslySetInnerHTML={{
@@ -37,6 +37,9 @@ export default function PopableScript() {
                 "data-toggleable",
               );
               const isOpen =
+                !targetController.getAttribute("data-behavior")?.includes(
+                  "open-only",
+                ) &&
                 targetController.getAttribute("data-state") === "open";
 
               const currentState = targetController.getAttribute("data-state");

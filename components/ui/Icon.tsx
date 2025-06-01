@@ -13,7 +13,9 @@ export type AvailableIcons =
   | "globe"
   | "close"
   | "seller-search"
-  | "arrow-up";
+  | "arrow-up"
+  | "trend-up"
+  | "close-small";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

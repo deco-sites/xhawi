@@ -1,7 +1,9 @@
 {
   "__resolveType": "site/apps/deco/vtex.ts",
   "defaultSegment": {
-    "channelPrivacy": "public"
+    "channelPrivacy": "public",
+    "cultureInfo": "en-US",
+    "currencyCode": "OMR"
   },
   "platform": "vtex",
   "account": "omanshop",

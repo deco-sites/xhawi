@@ -2,7 +2,7 @@ import { asset, Head } from "$fresh/runtime.ts";
 import { Context } from "@deco/deco";
 import { useScript } from "@deco/deco/hooks";
 import AsRadioScript from "../components/scripts/AsRadio.tsx";
-import PopableScript from "../components/scripts/Popable.tsx";
+import ControllerScript from "../components/scripts/ControllerScript.tsx";
 
 interface Props {
   /**
@@ -70,8 +70,8 @@ export default function GlobalTags({ revision }: Props) {
         src="https://unpkg.com/embla-carousel-autoplay@8.6.0/embla-carousel-autoplay.umd.js"
       />
 
-      {/* Popable Script */}
-      <PopableScript />
+      {/* Controller Script */}
+      <ControllerScript />
 
       {/* As Radio Script */}
       <AsRadioScript />
