@@ -12,19 +12,21 @@ export default function SearchHistory(props: Props) {
     <div>
       <div class="row flex justify-between items-center">
         <h3 class="font-medium">Search History</h3>
-        <button
-          type="button"
-          hx-on:click={useScript(() => {
-            document.cookie = "search-history=";
-            const searchHistory = document.getElementById("search-history");
-            if (searchHistory) {
-              searchHistory.innerHTML = "";
-            }
-          })}
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 loader-exception h-auto cursor-pointer p-0 text-sm font-semibold text-omantel-secondary-blue hover:no-underline"
-        >
-          Clear all
-        </button>
+        {history.length > 0 && (
+          <button
+            type="button"
+            hx-on:click={useScript(() => {
+              document.cookie = "search-history=";
+              const searchHistory = document.getElementById("search-history");
+              if (searchHistory) {
+                searchHistory.innerHTML = "";
+              }
+            })}
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 loader-exception h-auto cursor-pointer p-0 text-sm font-semibold text-omantel-secondary-blue hover:no-underline"
+          >
+            Clear all
+          </button>
+        )}
       </div>
       <ul
         class="mt-2 flex flex-wrap border-b border-omantel-platinum"
