@@ -34,7 +34,7 @@ export default function BrandCarousel(props: Props) {
                 >
                   Shop by brand
                 </div>
-                <div class="flex gap-3 absolute lg:top-[-4.5rem] top-0 right-0 lg:right-[58px]">
+                <div class="flex gap-3 absolute top-0 right-0">
                   <Slider.PrevButton class="z-10 flex size-10 lg:size-12 items-center justify-center rounded-full border border-omantel-platinum p-0 text-center text-black transition-all duration-300 ease-in-out disabled:cursor-not-allowed group">
                     <Icon
                       id="right-arrow-small"

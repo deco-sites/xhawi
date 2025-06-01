@@ -27,7 +27,7 @@ export default function TrendingCategories(props: Props) {
             >
               Trending categories
             </div>
-            <Slider.Carousel class="[--slide-size:133px]">
+            <Slider.Carousel class="[--slide-size:133px] lg:[--slide-size:229px]">
               {categories.map((category, index) => (
                 <Slider.Item
                   index={index}

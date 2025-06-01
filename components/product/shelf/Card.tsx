@@ -1,4 +1,5 @@
 import { Product } from "apps/commerce/types.ts";
+import { clx } from "../../../sdk/clx.ts";
 import { relative } from "../../../sdk/url.ts";
 import { useOffer } from "../../../sdk/useOffer.ts";
 import Image from "../../images/Image.tsx";
@@ -7,8 +8,8 @@ interface Props {
   product: Product;
 }
 
-const IMAGE_WIDTH = 500;
-const IMAGE_HEIGHT = 500;
+// const IMAGE_WIDTH = 500;
+// const IMAGE_HEIGHT = 500;
 
 function Card(props: Props) {
   const { product } = props;
@@ -24,12 +25,39 @@ function Card(props: Props) {
     price,
   } = useOffer(product.offers);
 
+  const highlight = product.additionalProperty?.find((property) =>
+    property.description === "highlight"
+  )?.value?.split("|")?.[0];
+
+  const currentColor = product.additionalProperty?.find((property) =>
+    property.name === "Color"
+  )?.value?.split("|")?.[1];
+
+  const colors = product.isVariantOf?.hasVariant?.map((variant) => ({
+    url: variant.url,
+    color: variant.additionalProperty?.find((property) =>
+      property.name === "Color"
+    )?.value?.split("|")?.[1],
+  })).filter((color, index, arr): color is { url: string; color: string } =>
+    !!color.color && !!color.url &&
+    index === arr.findIndex((c) => c.color === color.color) &&
+    color.color !== currentColor
+  ) || [];
+
   return (
     <div
       class="flex h-[390px] items-start justify-start lg:h-auto"
       id="product1"
     >
       <div class="w-inherit relative h-full w-full max-w-sm overflow-hidden rounded-lg border bg-white p-4 lg:flex-nowrap">
+        {highlight && (
+          <button
+            type="button"
+            class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground false sale-btn absolute top-0 h-8 truncate rounded-none rounded-ee-md rounded-ss-md bg-omantel-secondary-blue p-1 px-3.5 text-xs uppercase hover:bg-omantel-blue ltr:left-0 rtl:left-auto rtl:right-0 lg:w-auto"
+          >
+            {highlight}
+          </button>
+        )}
         <div>
           <a
             id="product1Link"
@@ -41,8 +69,6 @@ function Card(props: Props) {
               sources={{
                 // TODO: Handle product without image
                 src: image.url!,
-                width: IMAGE_WIDTH,
-                height: IMAGE_HEIGHT,
               }}
               loading="lazy"
               class="mx-auto h-[150px] max-h-[300px] w-full max-w-[300px] rounded-md border-0 object-contain md:max-h-[300px] lg:h-[300px]"
@@ -71,6 +97,7 @@ function Card(props: Props) {
           >
           </span>
         </div>
+
         <p
           class=" text-omantel-faded-black flex items-center gap-2 text-[10px] font-normal lg:text-[14px] lg:font-medium"
           id="product1StockAvailable"
@@ -80,10 +107,13 @@ function Card(props: Props) {
             class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground relative rounded-full text-[0] border product-colors h-1.5 w-1.5 p-0 lg:h-1.5 lg:w-1.5 border-bg-omantel-dark-green bg-omantel-dark-green hover:bg-omantel-dark-green"
             data-testid="colored-button"
           >
-          </button>In
-          Stock<span class="text-[10px] font-normal text-omantel-alert-dark lg:text-xs">
-            ({inventoryLevel})
-          </span>
+          </button>In Stock
+          {typeof inventoryLevel === "number" && inventoryLevel < 10 &&
+            (
+              <span class="text-[10px] font-normal text-omantel-alert-dark lg:text-xs">
+                (few items left)
+              </span>
+            )}
         </p>
         <div
           class="py-0 text-xs text-omantel-secondary-blue lg:py-2 lg:text-sm "
@@ -108,12 +138,43 @@ function Card(props: Props) {
           class="flex h-6 flex-row items-center justify-start gap-1 align-middle lg:gap-1"
           id="product1Colors"
         >
-          <a
-            class="p-0 text-sm font-bold text-omantel-grey underline"
-            hreflang="en-US"
-            href={url}
-          >
-          </a>
+          {currentColor && (
+            <a
+              class="flex items-center justify-center rounded-2xl p-0.5 shadow-[0px_0px_0px_2px_#95c655]"
+              hreflang="en-US"
+              href={product.url}
+            >
+              <button
+                type="button"
+                class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 relative h-4 w-4 rounded-full p-2 text-[0] lg:h-4 lg:w-4 border border-omantel-grey color-button cursor-pointer"
+                style={{
+                  backgroundColor: currentColor,
+                }}
+              >
+              </button>
+            </a>
+          )}
+          {colors.map((color) => (
+            <a
+              class={clx(
+                "flex items-center justify-center rounded-2xl",
+                colors.length === 1 && !currentColor
+                  ? "p-0.5 shadow-[0px_0px_0px_2px_#95c655]"
+                  : "p-px",
+              )}
+              hreflang="en-US"
+              href={color.url}
+            >
+              <button
+                type="button"
+                class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 relative h-4 w-4 rounded-full p-2 text-[0] lg:h-4 lg:w-4 border border-omantel-grey color-button cursor-pointer"
+                style={{
+                  backgroundColor: color.color,
+                }}
+              >
+              </button>
+            </a>
+          ))}
         </div>
       </div>
     </div>

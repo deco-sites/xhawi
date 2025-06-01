@@ -91,16 +91,49 @@
     {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
-        "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "title": "Samsung mobiles",
-        "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "facets": "brand/samsung",
-            "sort": "",
-            "count": 11
+        "__resolveType": "website/flags/multivariate/section.ts",
+        "variants": [
+          {
+            "value": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "Samsung mobiles",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/samsung",
+                  "sort": "",
+                  "count": 11
+                }
+              },
+              "spacing": {
+                "bottom": true
+              }
+            },
+            "rule": {
+              "__resolveType": "website/matchers/device.ts",
+              "mobile": false,
+              "tablet": false,
+              "desktop": true
+            }
+          },
+          {
+            "value": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "Samsung mobiles",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/samsung",
+                  "sort": "",
+                  "count": 11
+                }
+              }
+            },
+            "rule": {
+              "__resolveType": "website/matchers/never.ts"
+            }
           }
-        }
+        ]
       }
     },
     {

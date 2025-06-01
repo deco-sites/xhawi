@@ -26,7 +26,7 @@ export default function DownloadApps(props: DownloadAppsProps) {
             rel="noopener noreferrer"
             href={download.url}
           >
-            <Image sources={download.image} />
+            <Image sources={download.image} class="lg:w-[120px]" />
           </a>
         ))}
       </div>

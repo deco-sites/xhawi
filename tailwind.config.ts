@@ -33,6 +33,7 @@ export default {
         "omantel-light-green": "#E3FCC3",
         "omantel-platinum": "#DDDDDD",
         "omantel-sea-salt": "#EBEBEB",
+        "omantel-blue": "#144777",
         "omantel-secondary-blue": "#0379CD",
         "omantel-smoke": "#F8F8F8",
         "omantel-link": "#0673DE",

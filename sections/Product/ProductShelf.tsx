@@ -40,7 +40,7 @@ export default function ProductShelf(props: Props) {
             <Slider.Root
               js={{ align: "start" }}
               class={clx(
-                "lg:pt-[48px] pt-[30px] [--slide-spacing:0rem] [--slide-size:207px]",
+                "lg:pt-[48px] pt-[30px] [--slide-spacing:0rem] [--slide-size:207px] lg:[--slide-size:348px]",
                 spacing?.bottom && "lg:pb-[48px] pb-[30px]",
               )}
             >
@@ -48,7 +48,7 @@ export default function ProductShelf(props: Props) {
                 {title}
               </div>
               <div
-                class="custom-button !top-[28px] flex justify-center gap-2 lg:!top-[-72px]"
+                class="custom-button !top-[28px] flex justify-center gap-2 lg:!top-[48px]"
                 style="text-align: center;"
               >
                 <Slider.PrevButton

@@ -26,7 +26,7 @@ export default function Item({ name, url, image }: ItemProps) {
             class="size-20 lg:size-32"
           />
         </div>
-        <div class="min-h-20 p-3 text-xs font-medium lg:text-base">
+        <div class="p-3 text-xs font-medium lg:text-base">
           {name}
         </div>
       </div>
