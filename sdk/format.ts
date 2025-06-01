@@ -16,8 +16,13 @@ const formatter = (currency: string, locale: string) => {
   return formatters.get(key)!;
 };
 
+interface Options {
+  currency?: string;
+  locale?: string;
+}
+
 export const formatPrice = (
   price: number | undefined,
-  currency = "BRL",
-  locale = "pt-BR",
-) => price ? formatter(currency, locale).format(price) : null;
+  { currency = "OMR", locale = "en-US" }: Options = {},
+) =>
+  price ? formatter(currency, locale).format(price).replace("OMR", "") : null;

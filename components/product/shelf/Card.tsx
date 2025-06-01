@@ -1,5 +1,6 @@
 import { Product } from "apps/commerce/types.ts";
 import { clx } from "../../../sdk/clx.ts";
+import { formatPrice } from "../../../sdk/format.ts";
 import { relative } from "../../../sdk/url.ts";
 import { useOffer } from "../../../sdk/useOffer.ts";
 import Image from "../../images/Image.tsx";
@@ -124,7 +125,7 @@ function Card(props: Props) {
               OMR
             </span>{" "}
             <span class="omantel-secondary-blue new-price text-lg font-semibold lg:text-xl">
-              {price}
+              {formatPrice(price)}
             </span>
           </span>
         </div>
