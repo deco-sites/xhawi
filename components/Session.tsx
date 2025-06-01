@@ -1,14 +1,12 @@
 import { Head } from "$fresh/runtime.ts";
+import { useScript } from "@deco/deco/hooks";
 import { type Person } from "apps/commerce/types.ts";
 import { type AppContext } from "../apps/site.ts";
-import { MINICART_DRAWER_ID } from "../constants.ts";
 import { useComponent } from "../sections/Component.tsx";
 import { type Item } from "./minicart/Item.tsx";
 import CartProvider, { type Minicart } from "./minicart/Minicart.tsx";
-import Drawer from "./ui/Drawer.tsx";
 import UserProvider from "./user/Provider.tsx";
 import WishlistProvider, { type Wishlist } from "./wishlist/Provider.tsx";
-import { useScript } from "@deco/deco/hooks";
 declare global {
   interface Window {
     STOREFRONT: SDK;
@@ -51,6 +49,7 @@ export interface SDK {
   };
 }
 const sdk = () => {
+  document.dir = "ltr";
   const target = new EventTarget();
   const createCartSDK = (): SDK["CART"] => {
     let form: HTMLFormElement | null = null;
@@ -279,25 +278,7 @@ export default function Session(
   }
   return (
     <>
-      {/* Minicart Drawer */}
-      <Drawer
-        id={MINICART_DRAWER_ID}
-        class="drawer-end z-50"
-        aside={
-          <Drawer.Aside title="My Bag" drawer={MINICART_DRAWER_ID}>
-            <div
-              class="h-full flex flex-col bg-base-100 items-center justify-center overflow-auto"
-              style={{
-                minWidth: "calc(min(100vw, 425px))",
-                maxWidth: "425px",
-              }}
-            >
-              <CartProvider cart={minicart!} />
-            </div>
-          </Drawer.Aside>
-        }
-      />
-
+      <CartProvider cart={minicart!} />
       <WishlistProvider wishlist={wishlist ?? null} />
       <UserProvider user={user ?? null} />
     </>

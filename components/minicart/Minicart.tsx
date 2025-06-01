@@ -1,12 +1,9 @@
 import { AppContext } from "../../apps/site.ts";
-import { MINICART_DRAWER_ID, MINICART_FORM_ID } from "../../constants.ts";
+import { MINICART_POPUP_ID } from "../../constants.ts";
 import { clx } from "../../sdk/clx.ts";
-import { formatPrice } from "../../sdk/format.ts";
 import { useComponent } from "../../sections/Component.tsx";
-import Coupon from "./Coupon.tsx";
-import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
-import CartItem, { Item } from "./Item.tsx";
-import { useScript } from "@deco/deco/hooks";
+import Popup from "../ui/Popup.tsx";
+import { Item } from "./Item.tsx";
 export interface Minicart {
   /** Cart from the ecommerce platform */
   platformCart: Record<string, unknown>;
@@ -24,6 +21,7 @@ export interface Minicart {
     checkoutHref: string;
   };
 }
+
 const onLoad = (formID: string) => {
   const form = document.getElementById(formID) as HTMLFormElement;
   window.STOREFRONT.CART.dispatch(form);
@@ -58,16 +56,19 @@ const onLoad = (formID: string) => {
     },
   );
 };
+
 const sendBeginCheckoutEvent = () => {
   window.DECO.events.dispatch({
     name: "being_checkout",
     params: window.STOREFRONT.CART.getCart(),
   });
 };
+
 export const action = async (_props: unknown, req: Request, ctx: AppContext) =>
   req.method === "PATCH"
     ? ({ cart: await ctx.invoke("site/loaders/minicart.ts") }) // error fallback
     : ({ cart: await ctx.invoke("site/actions/minicart/submit.ts") });
+
 export function ErrorFallback() {
   return (
     <div class="flex flex-col flex-grow justify-center items-center overflow-hidden w-full gap-2">
@@ -91,171 +92,52 @@ export function ErrorFallback() {
     </div>
   );
 }
-export default function Cart(
-  {
-    cart: {
-      platformCart,
-      storefront: {
-        items,
-        total,
-        subtotal,
-        coupon,
-        discounts,
-        locale,
-        currency,
-        enableCoupon = true,
-        freeShippingTarget,
-        checkoutHref,
-      },
-    },
-  }: {
-    cart: Minicart;
-  },
-) {
-  const count = items.length;
+
+export default function Cart(props: { cart: Minicart }) {
   return (
     <>
-      <form
-        class="contents"
-        id={MINICART_FORM_ID}
-        hx-sync="this:replace"
-        hx-trigger="submit, change delay:300ms"
-        hx-target="this"
-        hx-indicator="this"
-        hx-disabled-elt="this"
-        hx-post={useComponent(import.meta.url)}
-        hx-swap="outerHTML"
+      <Popup.Backdrop controlledBy={MINICART_POPUP_ID} />
+      <div
+        dir="ltr"
+        data-state="closed"
+        data-controlled-by={MINICART_POPUP_ID}
+        class="data-[state=closed]:hidden fixed left-0 top-0 min-w-max will-change-transform z-[100] translate-x-[154.667px] translate-y-[62px]"
       >
-        {/* Button to submit the form */}
-        <button hidden autofocus />
-
-        {/* Add to cart controllers */}
-        <input name="add-to-cart" type="hidden" />
-        <button hidden name="action" value="add-to-cart" />
-
-        {/* This contains the STOREFRONT cart. */}
-        <input
-          type="hidden"
-          name="storefront-cart"
-          value={encodeURIComponent(
-            JSON.stringify({ coupon, currency, value: total, items }),
-          )}
-        />
-
-        {/* This contains the platformCart cart from the commerce platform. Integrations usually use this value, like GTM, pixels etc */}
-        <input
-          type="hidden"
-          name="platform-cart"
-          value={encodeURIComponent(JSON.stringify(platformCart))}
-        />
-
-        <div
+        <Popup
+          controlledBy={MINICART_POPUP_ID}
+          role="menu"
+          aria-orientation="vertical"
+          dir="ltr"
           class={clx(
-            "flex flex-col flex-grow justify-center items-center overflow-hidden w-full",
-            "[.htmx-request_&]:pointer-events-none [.htmx-request_&]:opacity-60 [.htmx-request_&]:cursor-wait transition-opacity duration-300",
+            "min-w-[12rem] overflow-hidden border bg-popover text-popover-foreground shadow-md slide-in-from-top-2 mr-[43px] lg:mt-[12px] gap-4 !rounded-t-none max-w-xs lg:max-w-[432px] p-2 lg:min-w-[318px] lg:p-0 rounded-sm z-[100]",
+            "data-[state=closed]:hidden",
+            "data-[state=open]:fade-in-0",
+            "data-[state=open]:zoom-in-95",
+            "data-[state=open]:animate-in",
           )}
         >
-          {count === 0
-            ? (
-              <div class="flex flex-col gap-6">
-                <span class="font-medium text-2xl">Your bag is empty</span>
-                <label
-                  for={MINICART_DRAWER_ID}
-                  class="btn btn-outline no-animation"
-                >
-                  Choose products
-                </label>
+          <div class="">
+            <div class="p-4">
+              <div class="text-center text-lg font-bold" id="cartStatus">
+                Your cart is empty
               </div>
-            )
-            : (
-              <>
-                {/* Free Shipping Bar */}
-                <div class="px-2 py-4 w-full">
-                  <FreeShippingProgressBar
-                    total={total}
-                    locale={locale}
-                    currency={currency}
-                    target={freeShippingTarget}
-                  />
-                </div>
-
-                {/* Cart Items */}
-                <ul
-                  role="list"
-                  class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              <div class="py-2 text-center text-sm" id="cartMessage">
+                Looks like you haven't made<br />your choice yet.
+              </div>
+              <div class="p-4">
+                <a
+                  href="/en"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 p-6 bg-omantel-electric-green font-Rubik text-sm text-black hover:bg-omantel-dark-green active:bg-omantel-dark-green focus:bg-omantel-dark-green active:border-2 active:border-omantel-dark-green focus:ring-2 active:ring-omantel-dark-green focus:ring-omantel-dark-green disabled:bg-omantel-platinum disabled:text-omantel-grey w-full"
+                  id="startShopping"
+                  data-testid="startShopping"
                 >
-                  {items.map((item, index) => (
-                    <li>
-                      <CartItem
-                        item={item}
-                        index={index}
-                        locale={locale}
-                        currency={currency}
-                      />
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Cart Footer */}
-                <footer class="w-full">
-                  {/* Subtotal */}
-                  <div class="border-t border-base-200 py-2 flex flex-col">
-                    {discounts > 0 && (
-                      <div class="flex justify-between items-center px-4">
-                        <span class="text-sm">Discounts</span>
-                        <span class="text-sm">
-                          {formatPrice(discounts, currency, locale)}
-                        </span>
-                      </div>
-                    )}
-                    <div class="w-full flex justify-between px-4 text-sm">
-                      <span>Subtotal</span>
-                      <output form={MINICART_FORM_ID}>
-                        {formatPrice(subtotal, currency, locale)}
-                      </output>
-                    </div>
-                    {enableCoupon && <Coupon coupon={coupon} />}
-                  </div>
-
-                  {/* Total */}
-                  <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
-                    <div class="flex justify-between items-center w-full">
-                      <span>Total</span>
-                      <output
-                        form={MINICART_FORM_ID}
-                        class="font-medium text-xl"
-                      >
-                        {formatPrice(total, currency, locale)}
-                      </output>
-                    </div>
-                    <span class="text-sm text-base-300">
-                      Fees and shipping will be calculated at checkout
-                    </span>
-                  </div>
-
-                  <div class="p-4">
-                    <a
-                      class="btn btn-primary w-full no-animation"
-                      href={checkoutHref}
-                      hx-on:click={useScript(sendBeginCheckoutEvent)}
-                    >
-                      <span class="[.htmx-request_&]:hidden">
-                        Begin Checkout
-                      </span>
-                      <span class="[.htmx-request_&]:inline hidden loading loading-spinner" />
-                    </a>
-                  </div>
-                </footer>
-              </>
-            )}
-        </div>
-      </form>
-      <script
-        type="module"
-        dangerouslySetInnerHTML={{
-          __html: useScript(onLoad, MINICART_FORM_ID),
-        }}
-      />
+                  Start Shopping
+                </a>
+              </div>
+            </div>
+          </div>
+        </Popup>
+      </div>
     </>
   );
 }
