@@ -102,6 +102,7 @@ export default function Header(props: Props) {
               newUser: translations.header.newUser,
               signUp: translations.header.signUp,
             }}
+            dir={dir}
           />
           <LanguageSelector
             labels={{

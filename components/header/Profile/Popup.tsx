@@ -8,17 +8,18 @@ interface Props {
     newUser: string;
     signUp: string;
   };
+  dir: "ltr" | "rtl";
 }
 
-export default function ProfilePopup({ parentId, labels }: Props) {
+export default function ProfilePopup({ parentId, labels, dir }: Props) {
   return (
     <>
       <Popup.Backdrop controlledBy={parentId} />
       <div
-        dir="ltr"
+        dir={dir}
         data-controlled-by={parentId}
         data-state="closed"
-        class="data-[state=closed]:hidden absolute left-0 top-[calc(100%+6px)] -translate-x-[45%] lg:translate-x-0 transform min-w-max will-change-transform z-50"
+        class="data-[state=closed]:hidden absolute left-0 top-[calc(100%+6px)] ltr:-translate-x-[45%] lg:translate-x-0 transform min-w-max will-change-transform z-50"
       >
         <Popup
           class={clx(
