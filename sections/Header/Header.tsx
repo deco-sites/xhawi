@@ -1,6 +1,7 @@
 import { useDevice } from "@deco/deco/hooks";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
+import LanguageSelector from "../../components/header/LanguageSelector/LanguageSelector.tsx";
 import Navbar from "../../components/header/Navbar/Navbar.tsx";
 import Profile from "../../components/header/Profile/Profile.tsx";
 import Search from "../../components/header/Search/Search.tsx";
@@ -8,7 +9,7 @@ import SideMenuButton from "../../components/header/SideMenu/Button.tsx";
 import Menu from "../../components/header/SideMenu/Menu.tsx";
 import type { MenuItemProps } from "../../components/header/SideMenu/MenuItem.tsx";
 import MinicartButton from "../../components/minicart/Button.tsx";
-import Icon from "../../components/ui/Icon.tsx";
+import { useI18n } from "../../sdk/i18n.ts";
 import { getSearchHistory } from "../../sdk/search.ts";
 
 interface Props {
@@ -48,8 +49,10 @@ export function loader(props: Props, req: Request) {
   };
 }
 
-export default function Header({ logo, categories, search }: Props) {
+export default function Header(props: Props) {
+  const { logo, categories, search } = props;
   const isMobile = useDevice() !== "desktop";
+  const { translations, dir, currentUrl, language, goTo } = useI18n(props);
 
   return (
     <>
@@ -66,7 +69,7 @@ export default function Header({ logo, categories, search }: Props) {
         >
           <SideMenuButton />
           <div class="logo-container" id="logoContainer">
-            <a hreflang="en-US" id="logoLink" href="/en">
+            <a id="logoLink" href={goTo("/", language)}>
               <Image
                 alt={logo.alt}
                 id="logo"
@@ -90,29 +93,27 @@ export default function Header({ logo, categories, search }: Props) {
           role="group"
           class="col-start-3 row-start-1 flex-row justify-end gap-1 pr-1.5 lg:min-w-[20%] lg:justify-end lg:gap-3 lg:bg-transparent lg:pr-0 flex"
         >
-          <Profile />
-          <button
-            type="button"
-            role="menuitem"
-            id="radix-:R5e9svaH1:"
-            aria-haspopup="menu"
-            aria-expanded="false"
-            data-state="closed"
-            class="cursor-default select-none items-center rounded-sm text-sm outline-none data-[state=open]:bg-accent data-[state=open]:text-accent-foreground data-[state=open]: hidden min-w-[85px] p-1 font-light hover:bg-transparent focus:bg-transparent focus:text-white lg:flex [&[aria-expanded='false']]:text-white [&[aria-expanded='true']]:bg-omantel-grey [&[aria-expanded='true']]:text-white"
-            tabindex={-1}
-            data-orientation="horizontal"
-            data-radix-collection-item=""
-          >
-            <div class="flex items-center">
-              <Icon size={24} id="globe" />
-              <div class="flex w-14 flex-col items-start">
-                <span class="col-span-2 px-2 text-xs en">English</span>
-                <label class="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-md col-span-2 col-start-2 row-start-2 px-2">
-                  OMR
-                </label>
-              </div>
-            </div>
-          </button>
+          <Profile
+            labels={{
+              hi: translations.header.hi,
+              guest: translations.header.guest,
+              account: translations.header.account,
+              signIn: translations.header.signIn,
+              newUser: translations.header.newUser,
+              signUp: translations.header.signUp,
+            }}
+          />
+          <LanguageSelector
+            labels={{
+              currentLanguage: translations.currentLanguage,
+              omr: translations.menu.omr,
+              changeLanguage: translations.menu.changeLanguage,
+            }}
+            dir={dir}
+            arUrl={currentUrl("ar")}
+            enUrl={currentUrl("en")}
+            currentLanguage={language}
+          />
           <div
             role="menubar"
             tabindex={0}
@@ -120,12 +121,29 @@ export default function Header({ logo, categories, search }: Props) {
             style="outline:none"
           >
             <div class="flex items-center">
-              <MinicartButton />
+              <MinicartButton dir={dir} />
             </div>
           </div>
         </div>
       </div>
-      {isMobile ? <Menu categories={categories} /> : <Navbar />}
+      {isMobile
+        ? (
+          <Menu
+            categories={categories}
+            labels={{
+              currentLanguage: translations.currentLanguage,
+              menuHeader: translations.menu.header,
+              omr: translations.menu.omr,
+              backToMenu: translations.menu.backToMenu,
+              changeLanguage: translations.menu.changeLanguage,
+            }}
+            dir={dir}
+            currentLanguage={language}
+            enUrl={currentUrl("en")}
+            arUrl={currentUrl("ar")}
+          />
+        )
+        : <Navbar dir={dir} items={categories} />}
     </>
   );
 }

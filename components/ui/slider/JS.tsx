@@ -21,6 +21,7 @@ export interface Props {
    * @description Whether to center the slides if they are not scrollable
    */
   centerIfNotScrollable?: boolean;
+  dir?: "ltr" | "rtl";
 }
 
 const setup = (
@@ -30,6 +31,7 @@ const setup = (
     align = "start",
     interval = 0,
     centerIfNotScrollable = false,
+    dir = "ltr",
   }: Props,
 ) => {
   function setupEmbla() {
@@ -63,6 +65,7 @@ const setup = (
       loop: infinite,
       align,
       slidesToScroll: "auto",
+      direction: dir,
     }, plugins);
 
     prevButton?.addEventListener("click", () => {

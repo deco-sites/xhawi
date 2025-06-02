@@ -1,8 +1,10 @@
 import Item, { type ItemProps } from "../../components/brandCarousel/Item.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import Slider from "../../components/ui/slider/index.ts";
+import { useI18n } from "../../sdk/i18n.ts";
 
 interface Props {
+  title: string;
   brands: ItemProps[];
 }
 
@@ -14,7 +16,8 @@ function paginate<T>(arr: T[], size: number): T[][] {
 }
 
 export default function BrandCarousel(props: Props) {
-  const { brands } = props;
+  const { brands, title } = props;
+  const { dir } = useI18n(props);
 
   const brandPages = paginate(brands, 8);
 
@@ -23,35 +26,35 @@ export default function BrandCarousel(props: Props) {
       <div class="bg-white">
         <div class="container-fluid">
           <div class="container-width">
-            <div class="flex flex-col lg:py-[48px] py-[30px]">
+            <div class="flex flex-col lg:py-[48px] py-[30px]" dir={dir}>
               <Slider.Root
-                js={{ align: "start", infinite: false }}
+                js={{ align: "start", infinite: false, dir }}
                 class="relative"
               >
                 <div
                   class="sm-0:text-base/[24px] text-om-black mb-[16px] h-[40px] w-full overflow-hidden text-ellipsis whitespace-nowrap p-[8px] font-semibold ltr:pr-[100px] rtl:pl-[100px] sm:text-2xl/[36px] lg:mb-[24px] lg:h-[48px]"
                   id="brandCarouselHeading"
                 >
-                  Shop by brand
+                  {title}
                 </div>
-                <div class="flex gap-3 absolute top-0 right-0">
+                <div class="flex gap-3 absolute top-0 right-0 rtl:left-0 rtl:right-auto">
                   <Slider.PrevButton class="z-10 flex size-10 lg:size-12 items-center justify-center rounded-full border border-omantel-platinum p-0 text-center text-black transition-all duration-300 ease-in-out disabled:cursor-not-allowed group">
                     <Icon
                       id="right-arrow-small"
                       size={12}
-                      class="rotate-180 group-disabled:opacity-25 transition-opacity duration-300"
+                      class="rotate-180 group-disabled:opacity-25 transition-opacity duration-300 rtl:rotate-180"
                     />
                   </Slider.PrevButton>
                   <Slider.NextButton class="z-10 flex size-10 lg:size-12 items-center justify-center rounded-full border border-omantel-platinum p-0 text-center text-black transition-all duration-300 ease-in-out disabled:cursor-not-allowed group">
                     <Icon
                       id="right-arrow-small"
                       size={12}
-                      class="group-disabled:opacity-25 transition-opacity duration-300"
+                      class="group-disabled:opacity-25 transition-opacity duration-300 rtl:rotate-180"
                     />
                   </Slider.NextButton>
                 </div>
-                <div class="slider-container" dir="ltr">
-                  <Slider.Carousel>
+                <div class="slider-container" style={{ direction: dir }}>
+                  <Slider.Carousel dir={dir}>
                     {brandPages.map((brands, index) => (
                       <Slider.Item
                         index={index}

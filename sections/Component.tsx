@@ -20,8 +20,8 @@ export class ErrorBoundary extends Component<{
 }, {
   error: Error | null;
 }> {
-  state = { error: null };
-  static getDerivedStateFromError(error: Error) {
+  override state = { error: null };
+  static override getDerivedStateFromError(error: Error) {
     return { error };
   }
   render() {
@@ -51,7 +51,7 @@ export function useComponent<T = Record<string, unknown>>(
 }
 const identity = <T,>(x: T) => x;
 export const loader = async (
-  { component, props }: Props,
+  { component, props, ...rest }: Props,
   req: Request,
   ctx: AppContext,
 ) => {
@@ -63,7 +63,7 @@ export const loader = async (
     return {
       Component: () => (
         <ErrorBoundary fallback={ErrorFallback}>
-          <Component {...p} />
+          <Component {...p} {...rest} />
         </ErrorBoundary>
       ),
     };
@@ -74,7 +74,7 @@ export const loader = async (
   }
 };
 export const action = async (
-  { component, props }: Props,
+  { component, props, ...rest }: Props,
   req: Request,
   ctx: AppContext,
 ) => {
@@ -86,7 +86,7 @@ export const action = async (
     return {
       Component: () => (
         <ErrorBoundary fallback={ErrorFallback}>
-          <Component {...p} />
+          <Component {...p} {...rest} />
         </ErrorBoundary>
       ),
     };

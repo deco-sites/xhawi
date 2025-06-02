@@ -1,100 +1,367 @@
 {
   "name": "Home Page",
-  "sections": [
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "Header"
-      }
-    },
-    {
-      "__resolveType": "site/sections/Images/Carousel.tsx",
-      "preload": true,
-      "items": [
-        {
-          "image": {
-            "desktop": {
-              "src": "https://assets.decocache.com/xhawi/92b84c04-ca4c-45c2-98a9-6c680d16bc9c/Homepage_Banner___1440x310__Desktop_English__Perfume_3.jpg",
-              "width": 1440,
-              "height": 310
-            },
-            "mobile": {
-              "src": "https://assets.decocache.com/xhawi/3dd80324-7e29-4937-978f-8068cb169cb9/Homepage_Banner___375x400__Mobile__Perfume_3.jpg",
-              "width": 430,
-              "height": 400
-            },
-            "alt": "Perfume"
-          },
-          "title": {
-            "text": "Your signature scent"
-          },
-          "button": {
-            "text": "Shop now",
-            "link": "/en/products/beauty/Fragrance"
-          }
-        },
-        {
-          "image": {
-            "desktop": {
-              "src": "https://assets.decocache.com/xhawi/aed36e7f-447d-421d-b7cd-888211a6c683/Homepage_Banner___1440x310__Desktop_English__Healthcare_1.jpg",
-              "width": 1440,
-              "height": 310
-            },
-            "mobile": {
-              "src": "https://assets.decocache.com/xhawi/f9030840-5387-4605-bd3c-6882aba58683/Homepage_Banner___375x400__Mobile__Healthcare_1.jpg",
-              "width": 430,
-              "height": 400
-            },
-            "alt": "Healthcare devices"
-          },
-          "title": {
-            "text": "Healthcare devices",
-            "color": "#000000"
-          },
-          "button": {
-            "text": "Shop now",
-            "link": "/en/products/Health%20&%20Personal%20care"
-          }
-        }
-      ]
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "title": "Skincare",
-        "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "sort": "",
-            "count": 11,
-            "facets": "category-2/skincare"
-          }
-        }
-      }
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "title": "Interactive toys",
-        "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "facets": "brand/osmo",
-            "sort": "",
-            "count": 11
-          }
-        }
-      }
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "website/flags/multivariate/section.ts",
-        "variants": [
+  "sections": {
+    "__resolveType": "website/flags/multivariate.ts",
+    "variants": [
+      {
+        "value": [
           {
-            "value": {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Header - AR"
+            }
+          },
+          {
+            "__resolveType": "site/sections/Images/Carousel.tsx",
+            "preload": true,
+            "items": [
+              {
+                "image": {
+                  "desktop": {
+                    "src": "https://assets.decocache.com/xhawi/92b84c04-ca4c-45c2-98a9-6c680d16bc9c/Homepage_Banner___1440x310__Desktop_English__Perfume_3.jpg",
+                    "width": 1440,
+                    "height": 310
+                  },
+                  "mobile": {
+                    "src": "https://assets.decocache.com/xhawi/3dd80324-7e29-4937-978f-8068cb169cb9/Homepage_Banner___375x400__Mobile__Perfume_3.jpg",
+                    "width": 430,
+                    "height": 400
+                  },
+                  "alt": "Perfume"
+                },
+                "title": {
+                  "text": "عطرك المميز"
+                },
+                "button": {
+                  "text": "تسوق الآن",
+                  "link": "/ar/products/beauty/Fragrance"
+                }
+              },
+              {
+                "image": {
+                  "desktop": {
+                    "src": "https://assets.decocache.com/xhawi/aed36e7f-447d-421d-b7cd-888211a6c683/Homepage_Banner___1440x310__Desktop_English__Healthcare_1.jpg",
+                    "width": 1440,
+                    "height": 310
+                  },
+                  "mobile": {
+                    "src": "https://assets.decocache.com/xhawi/f9030840-5387-4605-bd3c-6882aba58683/Homepage_Banner___375x400__Mobile__Healthcare_1.jpg",
+                    "width": 430,
+                    "height": 400
+                  },
+                  "alt": "Healthcare devices"
+                },
+                "title": {
+                  "text": "أجهزة الرعاية الصحية",
+                  "color": "#000000"
+                },
+                "button": {
+                  "text": "تسوق الآن",
+                  "link": "/ar/products/Health%20&%20Personal%20care"
+                }
+              }
+            ]
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "العناية بالبشرة",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "sort": "",
+                  "count": 11,
+                  "facets": "category-2/skincare"
+                }
+              }
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "ألعاب تعليمية",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/osmo",
+                  "sort": "",
+                  "count": 11
+                }
+              }
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "Samsung الهواتف الذكية",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/samsung",
+                  "sort": "",
+                  "count": 11
+                }
+              },
+              "spacing": {
+                "bottom": true
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Brand/BrandCarousel.tsx",
+            "brands": [
+              {
+                "url": "/en/b/samsung",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/c68e3f90-00c1-445d-bc5d-85e55fabb070/Homepage_Banner_Desiktop___318x168___Samsung_logo.jpg",
+                  "alt": "Samsung",
+                  "width": 120,
+                  "height": 78
+                }
+              },
+              {
+                "url": "/en/b/jabra",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/1c7a5f16-8811-496e-b08a-bcddd4115ca2/Homepage_Banner_Desiktop___318x168___Jabra_logo.jpg",
+                  "alt": "Jabra"
+                }
+              },
+              {
+                "url": "/en/b/huawei",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/a7fe92d7-1613-4825-a610-e031551a212a/Anchorshop___318x318___logo_Huawei.png",
+                  "alt": "Huawei"
+                }
+              },
+              {
+                "url": "/en/b/osmo",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/e46ec8cf-fd94-46d6-b118-1215400ce6e4/ShopByBrand___318x168___OSMO_logo.jpg",
+                  "alt": "OSMO"
+                }
+              },
+              {
+                "url": "/en/b/dermaloop",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/9ba5b990-e703-477b-a500-be5403de07e0/ShopByBrand___318x168___Dermaloop_logo.jpg",
+                  "alt": "Dermaloop"
+                }
+              },
+              {
+                "url": "/en/b/nam",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/3c57d1f3-bc93-4ac4-a487-f3f81aa31641/Homepage_Banner_Desiktop___318x168___NAM_store_logo.jpg",
+                  "alt": "NAM"
+                }
+              },
+              {
+                "url": "/en/b/pasabahce",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/7557a006-50a0-4bfc-9574-e8df53d55abe/ShopByBrand___318x168___Pasabahce_logo.jpg",
+                  "alt": "Pasabahce"
+                }
+              },
+              {
+                "url": "/en/b/hama",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/381a2f93-9378-424c-a9a4-baa9ac5761f2/Homepage_Banner_Desiktop___318x168___Hama_logo.jpg",
+                  "alt": "Hama"
+                }
+              },
+              {
+                "url": "/en/b/iddesign",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/4436a073-a1fa-42f9-ab18-1736ac997d07/ShopByBrand___318x168___ID_Design_logo.jpg",
+                  "alt": "ID Design"
+                }
+              }
+            ],
+            "title": "تسوق حسب العلامة التجارية"
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "sort": "price:desc",
+                  "facets": "brand/marshall",
+                  "count": 12
+                }
+              },
+              "title": "الصوت من Marshall"
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/huawei",
+                  "sort": "price:desc",
+                  "count": 12
+                }
+              },
+              "title": "Huawei"
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "sort": "price:desc",
+                  "count": 12,
+                  "facets": "category-2/makeup",
+                  "fq": [
+                    "category-2=makeup"
+                  ]
+                }
+              },
+              "title": "الفئات الشائعة",
+              "spacing": {
+                "bottom": true
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Category/TrendingCategories.tsx",
+            "categories": [
+              {
+                "name": "الهواتف الذكية",
+                "url": "/products/mobiles/smartphones?q=smartphones",
+                "image": {
+                  "src": "https://images.ctfassets.net/1bwyifda87ii/23fryIJC4VaxnGPDM5FE3o/5b9326401d7ffbd1915d29a755596026/Homepage_Desiktop___400x400___TC_-_Smartphone.png",
+                  "alt": "Smartphones",
+                  "width": 204,
+                  "height": 204
+                }
+              },
+              {
+                "name": "سماعات الرأس",
+                "url": "products/mobiles/mobile-accessories/earphones---headphones?q=earphones---headphones",
+                "image": {
+                  "src": "https://images.ctfassets.net/1bwyifda87ii/2hZTBKjozZT4sv6TUNDCf/328a4321d681fced16f59676371c8949/Homepage_Desiktop___400x400___TC_-_Portable_Audio.png",
+                  "alt": "Headphones",
+                  "width": 204,
+                  "height": 204
+                }
+              }
+            ],
+            "title": "الفئات الشائعة"
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer - AR"
+            }
+          }
+        ],
+        "rule": {
+          "__resolveType": "site/matchers/language.ts",
+          "language": "ar"
+        }
+      },
+      {
+        "value": [
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Header"
+            }
+          },
+          {
+            "__resolveType": "site/sections/Images/Carousel.tsx",
+            "preload": true,
+            "items": [
+              {
+                "image": {
+                  "desktop": {
+                    "src": "https://assets.decocache.com/xhawi/92b84c04-ca4c-45c2-98a9-6c680d16bc9c/Homepage_Banner___1440x310__Desktop_English__Perfume_3.jpg",
+                    "width": 1440,
+                    "height": 310
+                  },
+                  "mobile": {
+                    "src": "https://assets.decocache.com/xhawi/3dd80324-7e29-4937-978f-8068cb169cb9/Homepage_Banner___375x400__Mobile__Perfume_3.jpg",
+                    "width": 430,
+                    "height": 400
+                  },
+                  "alt": "Perfume"
+                },
+                "title": {
+                  "text": "Your signature scent"
+                },
+                "button": {
+                  "text": "Shop now",
+                  "link": "/en/products/beauty/Fragrance"
+                }
+              },
+              {
+                "image": {
+                  "desktop": {
+                    "src": "https://assets.decocache.com/xhawi/aed36e7f-447d-421d-b7cd-888211a6c683/Homepage_Banner___1440x310__Desktop_English__Healthcare_1.jpg",
+                    "width": 1440,
+                    "height": 310
+                  },
+                  "mobile": {
+                    "src": "https://assets.decocache.com/xhawi/f9030840-5387-4605-bd3c-6882aba58683/Homepage_Banner___375x400__Mobile__Healthcare_1.jpg",
+                    "width": 430,
+                    "height": 400
+                  },
+                  "alt": "Healthcare devices"
+                },
+                "title": {
+                  "text": "Healthcare devices",
+                  "color": "#000000"
+                },
+                "button": {
+                  "text": "Shop now",
+                  "link": "/en/products/Health%20&%20Personal%20care"
+                }
+              }
+            ]
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "Skincare",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "sort": "",
+                  "count": 11,
+                  "facets": "category-2/skincare"
+                }
+              }
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "Interactive toys",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/osmo",
+                  "sort": "",
+                  "count": 11
+                }
+              }
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
               "__resolveType": "site/sections/Product/ProductShelf.tsx",
               "title": "Samsung mobiles",
               "products": {
@@ -108,178 +375,169 @@
               "spacing": {
                 "bottom": true
               }
-            },
-            "rule": {
-              "__resolveType": "website/matchers/device.ts",
-              "mobile": false,
-              "tablet": false,
-              "desktop": true
             }
           },
           {
-            "value": {
-              "__resolveType": "site/sections/Content/Empty.tsx"
-            },
-            "rule": {
-              "__resolveType": "website/matchers/always.ts"
+            "__resolveType": "site/sections/Brand/BrandCarousel.tsx",
+            "brands": [
+              {
+                "url": "/en/b/samsung",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/c68e3f90-00c1-445d-bc5d-85e55fabb070/Homepage_Banner_Desiktop___318x168___Samsung_logo.jpg",
+                  "alt": "Samsung",
+                  "width": 120,
+                  "height": 78
+                }
+              },
+              {
+                "url": "/en/b/jabra",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/1c7a5f16-8811-496e-b08a-bcddd4115ca2/Homepage_Banner_Desiktop___318x168___Jabra_logo.jpg",
+                  "alt": "Jabra"
+                }
+              },
+              {
+                "url": "/en/b/huawei",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/a7fe92d7-1613-4825-a610-e031551a212a/Anchorshop___318x318___logo_Huawei.png",
+                  "alt": "Huawei"
+                }
+              },
+              {
+                "url": "/en/b/osmo",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/e46ec8cf-fd94-46d6-b118-1215400ce6e4/ShopByBrand___318x168___OSMO_logo.jpg",
+                  "alt": "OSMO"
+                }
+              },
+              {
+                "url": "/en/b/dermaloop",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/9ba5b990-e703-477b-a500-be5403de07e0/ShopByBrand___318x168___Dermaloop_logo.jpg",
+                  "alt": "Dermaloop"
+                }
+              },
+              {
+                "url": "/en/b/nam",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/3c57d1f3-bc93-4ac4-a487-f3f81aa31641/Homepage_Banner_Desiktop___318x168___NAM_store_logo.jpg",
+                  "alt": "NAM"
+                }
+              },
+              {
+                "url": "/en/b/pasabahce",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/7557a006-50a0-4bfc-9574-e8df53d55abe/ShopByBrand___318x168___Pasabahce_logo.jpg",
+                  "alt": "Pasabahce"
+                }
+              },
+              {
+                "url": "/en/b/hama",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/381a2f93-9378-424c-a9a4-baa9ac5761f2/Homepage_Banner_Desiktop___318x168___Hama_logo.jpg",
+                  "alt": "Hama"
+                }
+              },
+              {
+                "url": "/en/b/iddesign",
+                "image": {
+                  "src": "https://assets.decocache.com/xhawi/4436a073-a1fa-42f9-ab18-1736ac997d07/ShopByBrand___318x168___ID_Design_logo.jpg",
+                  "alt": "ID Design"
+                }
+              }
+            ],
+            "title": "Shop by brand"
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "sort": "price:desc",
+                  "facets": "brand/marshall",
+                  "count": 12
+                }
+              },
+              "title": "Sound by Marshall"
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "facets": "brand/huawei",
+                  "sort": "price:desc",
+                  "count": 12
+                }
+              },
+              "title": "Huawei"
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "products": {
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+                "props": {
+                  "sort": "price:desc",
+                  "count": 12,
+                  "facets": "category-2/makeup",
+                  "fq": [
+                    "category-2=makeup"
+                  ]
+                }
+              },
+              "title": "Makeup essentials",
+              "spacing": {
+                "bottom": true
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Category/TrendingCategories.tsx",
+            "categories": [
+              {
+                "name": "Smartphones",
+                "url": "products/mobiles/smartphones?q=smartphones",
+                "image": {
+                  "src": "https://images.ctfassets.net/1bwyifda87ii/23fryIJC4VaxnGPDM5FE3o/5b9326401d7ffbd1915d29a755596026/Homepage_Desiktop___400x400___TC_-_Smartphone.png",
+                  "alt": "Smartphones",
+                  "width": 204,
+                  "height": 204
+                }
+              },
+              {
+                "name": "Headphones",
+                "url": "products/mobiles/mobile-accessories/earphones---headphones?q=earphones---headphones",
+                "image": {
+                  "src": "https://images.ctfassets.net/1bwyifda87ii/2hZTBKjozZT4sv6TUNDCf/328a4321d681fced16f59676371c8949/Homepage_Desiktop___400x400___TC_-_Portable_Audio.png",
+                  "alt": "Headphones",
+                  "width": 204,
+                  "height": 204
+                }
+              }
+            ],
+            "title": "Trending categories"
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer"
             }
           }
-        ]
-      }
-    },
-    {
-      "__resolveType": "site/sections/Brand/BrandCarousel.tsx",
-      "brands": [
-        {
-          "url": "/en/b/samsung",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/c68e3f90-00c1-445d-bc5d-85e55fabb070/Homepage_Banner_Desiktop___318x168___Samsung_logo.jpg",
-            "alt": "Samsung",
-            "width": 120,
-            "height": 78
-          }
-        },
-        {
-          "url": "/en/b/jabra",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/1c7a5f16-8811-496e-b08a-bcddd4115ca2/Homepage_Banner_Desiktop___318x168___Jabra_logo.jpg",
-            "alt": "Jabra"
-          }
-        },
-        {
-          "url": "/en/b/huawei",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/a7fe92d7-1613-4825-a610-e031551a212a/Anchorshop___318x318___logo_Huawei.png",
-            "alt": "Huawei"
-          }
-        },
-        {
-          "url": "/en/b/osmo",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/e46ec8cf-fd94-46d6-b118-1215400ce6e4/ShopByBrand___318x168___OSMO_logo.jpg",
-            "alt": "OSMO"
-          }
-        },
-        {
-          "url": "/en/b/dermaloop",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/9ba5b990-e703-477b-a500-be5403de07e0/ShopByBrand___318x168___Dermaloop_logo.jpg",
-            "alt": "Dermaloop"
-          }
-        },
-        {
-          "url": "/en/b/nam",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/3c57d1f3-bc93-4ac4-a487-f3f81aa31641/Homepage_Banner_Desiktop___318x168___NAM_store_logo.jpg",
-            "alt": "NAM"
-          }
-        },
-        {
-          "url": "/en/b/pasabahce",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/7557a006-50a0-4bfc-9574-e8df53d55abe/ShopByBrand___318x168___Pasabahce_logo.jpg",
-            "alt": "Pasabahce"
-          }
-        },
-        {
-          "url": "/en/b/hama",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/381a2f93-9378-424c-a9a4-baa9ac5761f2/Homepage_Banner_Desiktop___318x168___Hama_logo.jpg",
-            "alt": "Hama"
-          }
-        },
-        {
-          "url": "/en/b/iddesign",
-          "image": {
-            "src": "https://assets.decocache.com/xhawi/4436a073-a1fa-42f9-ab18-1736ac997d07/ShopByBrand___318x168___ID_Design_logo.jpg",
-            "alt": "ID Design"
-          }
-        }
-      ]
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "sort": "price:desc",
-            "facets": "brand/marshall",
-            "count": 12
-          }
-        },
-        "title": "Sound by Marshall"
-      }
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "facets": "brand/huawei",
-            "sort": "price:desc",
-            "count": 12
-          }
-        },
-        "title": "Huawei"
-      }
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "sort": "price:desc",
-            "count": 12,
-            "facets": "category-2/makeup",
-            "fq": [
-              "category-2=makeup"
-            ]
-          }
-        },
-        "title": "Makeup essentials",
-        "spacing": {
-          "bottom": true
+        ],
+        "rule": {
+          "__resolveType": "website/matchers/always.ts"
         }
       }
-    },
-    {
-      "__resolveType": "site/sections/Category/TrendingCategories.tsx",
-      "categories": [
-        {
-          "name": "Smartphones",
-          "url": "products/mobiles/smartphones?q=smartphones",
-          "image": {
-            "src": "https://images.ctfassets.net/1bwyifda87ii/23fryIJC4VaxnGPDM5FE3o/5b9326401d7ffbd1915d29a755596026/Homepage_Desiktop___400x400___TC_-_Smartphone.png",
-            "alt": "Smartphones",
-            "width": 204,
-            "height": 204
-          }
-        },
-        {
-          "name": "Headphones",
-          "url": "products/mobiles/mobile-accessories/earphones---headphones?q=earphones---headphones",
-          "image": {
-            "src": "https://images.ctfassets.net/1bwyifda87ii/2hZTBKjozZT4sv6TUNDCf/328a4321d681fced16f59676371c8949/Homepage_Desiktop___400x400___TC_-_Portable_Audio.png",
-            "alt": "Headphones",
-            "width": 204,
-            "height": 204
-          }
-        }
-      ]
-    },
-    {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "Footer"
-      }
-    }
-  ],
+    ]
+  },
   "__resolveType": "website/pages/Page.tsx",
   "path": "/",
   "seo": {

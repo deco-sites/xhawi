@@ -18,3 +18,5 @@ export const HEADER_HEIGHT_DESKTOP = "176px";
 export const NAVBAR_HEIGHT_DESKTOP = "44px";
 
 export const SIDE_MENU_ID = "side-menu";
+
+export const HEADER_LANGUAGE_SELECTOR_ID = "header-language-selector";

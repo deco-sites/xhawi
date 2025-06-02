@@ -1,5 +1,5 @@
-import Suggestions from "./Suggestions.tsx";
 import Input from "./Input.tsx";
+import Suggestions from "./Suggestions.tsx";
 
 export interface SearchProps {
   placeholder?: string;

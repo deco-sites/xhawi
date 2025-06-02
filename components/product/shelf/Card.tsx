@@ -7,13 +7,20 @@ import Image from "../../images/Image.tsx";
 
 interface Props {
   product: Product;
+  labels: {
+    priceInclusiveOfVAT: string;
+    omr: string;
+    fewItemsLeft: string;
+    inStock: string;
+  };
+  currentLanguage: string;
 }
 
 // const IMAGE_WIDTH = 500;
 // const IMAGE_HEIGHT = 500;
 
 function Card(props: Props) {
-  const { product } = props;
+  const { product, labels, currentLanguage } = props;
 
   // TODO: Handle product without image
   const image = product.image?.[0]!;
@@ -28,7 +35,7 @@ function Card(props: Props) {
 
   const highlight = product.additionalProperty?.find((property) =>
     property.description === "highlight"
-  )?.value?.split("|")?.[0];
+  )?.value?.split("|")?.[currentLanguage === "ar" ? 1 : 0];
 
   const currentColor = product.additionalProperty?.find((property) =>
     property.name === "Color"
@@ -44,6 +51,10 @@ function Card(props: Props) {
     index === arr.findIndex((c) => c.color === color.color) &&
     color.color !== currentColor
   ) || [];
+
+  if (name === "Osmo Pizza Kit - 901-00023") {
+    console.log(product);
+  }
 
   return (
     <div
@@ -108,11 +119,12 @@ function Card(props: Props) {
             class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground relative rounded-full text-[0] border product-colors h-1.5 w-1.5 p-0 lg:h-1.5 lg:w-1.5 border-bg-omantel-dark-green bg-omantel-dark-green hover:bg-omantel-dark-green"
             data-testid="colored-button"
           >
-          </button>In Stock
+          </button>
+          {labels.inStock}
           {typeof inventoryLevel === "number" && inventoryLevel < 10 &&
             (
               <span class="text-[10px] font-normal text-omantel-alert-dark lg:text-xs">
-                (few items left)
+                ({labels.fewItemsLeft})
               </span>
             )}
         </p>
@@ -122,7 +134,7 @@ function Card(props: Props) {
         >
           <span class="rtl:inline-flex">
             <span class="omantel-secondary-blue omr-text text-xs rtl:order-2 lg:text-sm">
-              OMR
+              {labels.omr}
             </span>{" "}
             <span class="omantel-secondary-blue new-price text-lg font-semibold lg:text-xl">
               {formatPrice(price)}
@@ -133,7 +145,7 @@ function Card(props: Props) {
           class="text-[12px] text-gray-400 lg:text-sm"
           id="product1TaxDescription"
         >
-          Price inclusive of VAT
+          {labels.priceInclusiveOfVAT}
         </p>
         <div
           class="flex h-6 flex-row items-center justify-start gap-1 align-middle lg:gap-1"

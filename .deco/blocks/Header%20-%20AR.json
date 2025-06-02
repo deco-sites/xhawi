@@ -1,0 +1,276 @@
+{
+  "__resolveType": "site/sections/Header/Header.tsx",
+  "logo": {
+    "alt": "شعار الرأس",
+    "width": 300,
+    "height": 50,
+    "src": "https://assets.decocache.com/xhawi/a1af8058-ecc3-454a-ac69-f53e43d29fda/header-logo.png"
+  },
+  "categories": [
+    {
+      "label": "الجمال",
+      "url": "/ar/products/Beauty?q=%D8%A7%D9%84%D8%AC%D9%85%D8%A7%D9%84+",
+      "subcategories": [
+        {
+          "label": "المكياج",
+          "url": "/ar/products/beauty/Makeup?q=%D8%A7%D9%84%D9%85%D9%83%D9%8A%D8%A7%D8%AC"
+        },
+        {
+          "label": "العناية بالوجه",
+          "url": "/ar/products/beauty/Skincare?q=%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9+%D8%A8%D8%A7%D9%84%D9%88%D8%AC%D9%87+"
+        },
+        {
+          "label": "الأدوات والإكسسوارات",
+          "url": "/ar/products/beauty/tools---accessories?q=%D8%A7%D9%84%D8%A3%D8%AF%D9%88%D8%A7%D8%AA+%D9%88%D8%A7%D9%84%D8%A5%D9%83%D8%B3%D8%B3%D9%88%D8%A7%D8%B1%D8%A7%D8%AA+"
+        },
+        {
+          "label": "العطور",
+          "url": "/ar/products/beauty/Fragrance?q=%D8%A7%D9%84%D8%B9%D8%B7%D9%88%D8%B1"
+        },
+        {
+          "label": "العناية بالجسم",
+          "url": "/ar/products/beauty/Bath-and-Body?q=%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9+%D8%A8%D8%A7%D9%84%D8%AC%D8%B3%D9%85+"
+        },
+        {
+          "label": "العناية الشخصية - النساء",
+          "url": "/ar/products/beauty/Personal-care---Women?q=%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9+%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9+-+%D8%A7%D9%84%D9%86%D8%B3%D8%A7%D8%A1"
+        },
+        {
+          "label": "العناية الشخصية - رجال",
+          "url": "/ar/products/beauty/Personal-care---Men?q=%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9+%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9+-+%D8%B1%D8%AC%D8%A7%D9%84"
+        }
+      ]
+    },
+    {
+      "label": "الإلكترونيات",
+      "url": "/ar/products/Electronics?q=%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D8%AA",
+      "subcategories": [
+        {
+          "label": "الصوتيات والمرئيات المنزلية",
+          "url": "/ar/products/electronics/home-av?q=%D8%A7%D9%84%D8%B5%D9%88%D8%AA%D9%8A%D8%A7%D8%AA+%D9%88%D8%A7%D9%84%D9%85%D8%B1%D8%A6%D9%8A%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84%D9%8A%D8%A9+"
+        },
+        {
+          "label": "الأجهزة المنزلية",
+          "url": "/ar/products/electronics/appliances?q=%D8%A7%D9%84%D8%A3%D8%AC%D9%87%D8%B2%D8%A9+%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84%D9%8A%D8%A9+"
+        },
+        {
+          "label": "كاميرات المراقبة",
+          "url": "/ar/products/electronics/security-cameras?q=%D9%83%D8%A7%D9%85%D9%8A%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9"
+        },
+        {
+          "label": "الكاميرات",
+          "url": "/ar/products/electronics/cameras?q=%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%8A%D8%B1%D8%A7%D8%AA"
+        },
+        {
+          "label": "الألعاب",
+          "url": "/ar/products/electronics/gaming?q=%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8"
+        }
+      ]
+    },
+    {
+      "label": "الهواتف والاجهزة الذكية",
+      "url": "/ar/products/Mobiles?q=%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%AA%D9%81+%D9%88%D8%A7%D9%84%D8%A7%D8%AC%D9%87%D8%B2%D8%A9+%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9",
+      "subcategories": [
+        {
+          "label": "الهواتف الذكية",
+          "url": "/ar/products/mobiles/smartphones?q=%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%AA%D9%81+%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9"
+        },
+        {
+          "label": "الأجهزة اللوحية",
+          "url": "/ar/products/mobiles/tablets?q=%D8%A7%D9%84%D8%A3%D8%AC%D9%87%D8%B2%D8%A9+%D8%A7%D9%84%D9%84%D9%88%D8%AD%D9%8A%D8%A9+"
+        },
+        {
+          "label": "الساعات الذكية والأجهزة الذكية",
+          "url": "/ar/products/mobiles/smartwatches---smart-devices?q=%D8%A7%D9%84%D8%B3%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9+%D9%88%D8%A7%D9%84%D8%A3%D8%AC%D9%87%D8%B2%D8%A9+%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9"
+        },
+        {
+          "label": "اكسسوارات الموبايل",
+          "url": "/ar/products/mobiles/mobile-accessories?q=%D8%A7%D9%83%D8%B3%D8%B3%D9%88%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D9%88%D8%A8%D8%A7%D9%8A%D9%84"
+        },
+        {
+          "label": "إكسسوارات الأجهزة اللوحية",
+          "url": "/ar/products/mobiles/tablet-accessories?q=%D8%A5%D9%83%D8%B3%D8%B3%D9%88%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D8%A3%D8%AC%D9%87%D8%B2%D8%A9+%D8%A7%D9%84%D9%84%D9%88%D8%AD%D9%8A%D8%A9++"
+        }
+      ]
+    },
+    {
+      "label": "الدمى والألعاب",
+      "url": "/ar/products/Toys---Games?q=%D8%A7%D9%84%D8%AF%D9%85%D9%89+%D9%88%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8",
+      "subcategories": [
+        {
+          "label": "ألعاب الرضع والأطفال",
+          "url": "/ar/products/toys---games/baby-&-preschool?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D8%B1%D8%B6%D8%B9+%D9%88%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84+"
+        },
+        {
+          "label": "الألعاب التعليمية",
+          "url": "/ar/products/toys---games/educational?q=%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A%D8%A9++"
+        },
+        {
+          "label": "ألعاب وأنشطة خارجية",
+          "url": "/ar/products/toys---games/outdoor-playtime?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D9%88%D8%A3%D9%86%D8%B4%D8%B7%D8%A9+%D8%AE%D8%A7%D8%B1%D8%AC%D9%8A%D8%A9++"
+        },
+        {
+          "label": "ألعاب الداخلية",
+          "url": "/ar/products/toys---games/indoor-games?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9"
+        },
+        {
+          "label": "الدمى",
+          "url": "/ar/products/toys---games/dolls?q=%D8%A7%D9%84%D8%AF%D9%85%D9%89"
+        },
+        {
+          "label": "ألعاب إلكترونية",
+          "url": "/ar/products/toys---games/electronics?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9"
+        },
+        {
+          "label": "ألعاب البناء",
+          "url": "/ar/products/toys---games/building-toys?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D8%A1"
+        },
+        {
+          "label": "الفنون والحرف اليدوية",
+          "url": "/ar/products/toys---games/arts-and-crafts?q=%D8%A7%D9%84%D9%81%D9%86%D9%88%D9%86+%D9%88%D8%A7%D9%84%D8%AD%D8%B1%D9%81+%D8%A7%D9%84%D9%8A%D8%AF%D9%88%D9%8A%D8%A9"
+        },
+        {
+          "label": "ألعاب ناعمة",
+          "url": "/ar/products/toys---games/soft-toys?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D9%86%D8%A7%D8%B9%D9%85%D8%A9"
+        },
+        {
+          "label": "ألعاب المغامرات والأبطال",
+          "url": "/ar/products/toys---games/action-toys---hero-play?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D9%85%D8%BA%D8%A7%D9%85%D8%B1%D8%A7%D8%AA+%D9%88%D8%A7%D9%84%D8%A3%D8%A8%D8%B7%D8%A7%D9%84++"
+        },
+        {
+          "label": "الدراجات الهوائية والسكوتر",
+          "url": "/ar/products/toys---games/bikes-and-scooters?q=%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%AC%D8%A7%D8%AA+%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%A6%D9%8A%D8%A9+%D9%88%D8%A7%D9%84%D8%B3%D9%83%D9%88%D8%AA%D8%B1"
+        },
+        {
+          "label": "ألعاب التحكم عن بعد",
+          "url": "/ar/products/toys---games/remote-controlled-toys?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D8%AA%D8%AD%D9%83%D9%85+%D8%B9%D9%86+%D8%A8%D8%B9%D8%AF"
+        },
+        {
+          "label": "ألعاب الشاطئ والماء",
+          "url": "/ar/products/toys---games/beach-and-water?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D8%A7%D9%84%D8%B4%D8%A7%D8%B7%D8%A6+%D9%88%D8%A7%D9%84%D9%85%D8%A7%D8%A1++"
+        },
+        {
+          "label": "ألعاب مدرسية",
+          "url": "/ar/products/toys---games/school?q=%D8%A3%D9%84%D8%B9%D8%A7%D8%A8+%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9+"
+        }
+      ]
+    },
+    {
+      "label": "المنزل والمطبخ",
+      "url": "/ar/products/Home-Kitchen?q=%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84+%D9%88%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D8%AE",
+      "subcategories": [
+        {
+          "label": "الأثاث",
+          "url": "/ar/products/home-kitchen/furniture?q=%D8%A7%D9%84%D8%A3%D8%AB%D8%A7%D8%AB"
+        },
+        {
+          "label": "أثاث المنزل",
+          "url": "/ar/products/home-kitchen/home-furnishing?q=%D8%A3%D8%AB%D8%A7%D8%AB+%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84++"
+        },
+        {
+          "label": "أدوات المطبخ والطعام",
+          "url": "/ar/products/home-kitchen/kitchen---dining?q=%D8%A3%D8%AF%D9%88%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D8%AE+%D9%88%D8%A7%D9%84%D8%B7%D8%B9%D8%A7%D9%85++"
+        },
+        {
+          "label": "ديكور المنزل",
+          "url": "/ar/products/home-kitchen/home-decor?q=%D8%AF%D9%8A%D9%83%D9%88%D8%B1+%D8%A7%D9%84%D9%85%D9%86%D8%B2%D9%84"
+        },
+        {
+          "label": "أواني تخزين المطبخ",
+          "url": "/ar/products/home-kitchen/kitchen-storage---containers?q=%D8%A3%D9%88%D8%A7%D9%86%D9%8A+%D8%AA%D8%AE%D8%B2%D9%8A%D9%86+%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D8%AE+"
+        },
+        {
+          "label": "مستلزمات دورة المياه",
+          "url": "/ar/products/home-kitchen/bathroom?q=%D9%85%D8%B3%D8%AA%D9%84%D8%B2%D9%85%D8%A7%D8%AA+%D8%AF%D9%88%D8%B1%D8%A9+%D8%A7%D9%84%D9%85%D9%8A%D8%A7%D9%87++"
+        },
+        {
+          "label": "روائح عطرية",
+          "url": "/ar/products/home-kitchen/aromatherapy?q=%D8%B1%D9%88%D8%A7%D8%A6%D8%AD+%D8%B9%D8%B7%D8%B1%D9%8A%D8%A9+"
+        },
+        {
+          "label": "النوافذ",
+          "url": "/ar/products/home-kitchen/windows?q=%D8%A7%D9%84%D9%86%D9%88%D8%A7%D9%81%D8%B0"
+        }
+      ]
+    },
+    {
+      "label": "الرياضة والترفيه",
+      "url": "/ar/products/Sports---Leisure?q=%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9+%D9%88%D8%A7%D9%84%D8%AA%D8%B1%D9%81%D9%8A%D9%87",
+      "subcategories": [
+        {
+          "label": "اللياقة بدنية",
+          "url": "/ar/products/sports---leisure/fitness?q=%D8%A7%D9%84%D9%84%D9%8A%D8%A7%D9%82%D8%A9+%D8%A8%D8%AF%D9%86%D9%8A%D8%A9"
+        },
+        {
+          "label": "الأنشطة الخارجية والتخييم",
+          "url": "/ar/products/sports---leisure/outdoor---camping?q=%D8%A7%D9%84%D8%A3%D9%86%D8%B4%D8%B7%D8%A9+%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC%D9%8A%D8%A9+%D9%88%D8%A7%D9%84%D8%AA%D8%AE%D9%8A%D9%8A%D9%85"
+        }
+      ]
+    },
+    {
+      "label": "منتجات الأطفال",
+      "url": "/ar/products/Baby?q=%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA+%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84",
+      "subcategories": [
+        {
+          "label": "نشاط الرضع",
+          "url": "/ar/products/baby/infant-activity?q=%D9%86%D8%B4%D8%A7%D8%B7+%D8%A7%D9%84%D8%B1%D8%B6%D8%B9"
+        },
+        {
+          "label": "أكياس الطفل",
+          "url": "/ar/products/baby/baby-bags?q=%D8%A3%D9%83%D9%8A%D8%A7%D8%B3+%D8%A7%D9%84%D8%B7%D9%81%D9%84"
+        },
+        {
+          "label": "فراش الطفل",
+          "url": "/ar/products/baby/baby-bedding?q=%D9%81%D8%B1%D8%A7%D8%B4+%D8%A7%D9%84%D8%B7%D9%81%D9%84"
+        },
+        {
+          "label": "الرضاعة الصناعية",
+          "url": "/ar/products/baby/bottle-feeding?q=%D8%A7%D9%84%D8%B1%D8%B6%D8%A7%D8%B9%D8%A9+%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9"
+        },
+        {
+          "label": "الرضاعة",
+          "url": "/ar/products/baby/breast-feeding?q=%D8%A7%D9%84%D8%B1%D8%B6%D8%A7%D8%B9%D8%A9"
+        },
+        {
+          "label": "أساسيات وقت الوجبات",
+          "url": "/ar/products/baby/meal-time-essentials?q=%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A7%D8%AA+%D9%88%D9%82%D8%AA+%D8%A7%D9%84%D9%88%D8%AC%D8%A8%D8%A7%D8%AA"
+        },
+        {
+          "label": "التدريب على استخدام المرحاض",
+          "url": "/ar/products/baby/diapering---potty-training?q=%D8%A7%D9%84%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8+%D8%B9%D9%84%D9%89+%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85+%D8%A7%D9%84%D9%85%D8%B1%D8%AD%D8%A7%D8%B6"
+        },
+        {
+          "label": "أساسيات السلامة",
+          "url": "/ar/products/baby/child-safety-essentials?q=%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A7%D8%AA+%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9"
+        }
+      ]
+    },
+    {
+      "label": "الصحة والعناية الشخصية",
+      "url": "/ar/products/Health---Personal-care?q=%D8%A7%D9%84%D8%B5%D8%AD%D8%A9+%D9%88%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9+%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9",
+      "subcategories": [
+        {
+          "label": "معدات العافية",
+          "url": "/ar/products/health---personal-care/wellness-equipment?q=%D9%85%D8%B9%D8%AF%D8%A7%D8%AA+%D8%A7%D9%84%D8%B9%D8%A7%D9%81%D9%8A%D8%A9"
+        },
+        {
+          "label": "تدليك وسبا",
+          "url": "/ar/products/health---personal-care/massage---spa?q=%D8%AA%D8%AF%D9%84%D9%8A%D9%83+%D9%88%D8%B3%D8%A8%D8%A7"
+        }
+      ]
+    },
+    {
+      "label": "المتاجر",
+      "url": "/ar/c/storefront?q=%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AC%D8%B1",
+      "subcategories": [
+        {
+          "label": "HUAWEI",
+          "url": "/ar/storefront/huawei?q=HUAWEI"
+        }
+      ]
+    }
+  ],
+  "search": {
+    "placeholder": "ما الذي تبحث عنه ؟"
+  }
+}

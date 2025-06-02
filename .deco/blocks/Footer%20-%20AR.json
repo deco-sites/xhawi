@@ -27,22 +27,22 @@
         }
       }
     ],
-    "title": "Download XHAWI App"
+    "title": "تحميل تطبيق XHAWI"
   },
   "linksSection": {
-    "title": "Get to know us",
+    "title": "تعرف علينا",
     "links": [
       {
-        "href": "/en//h/about-us",
-        "text": "About us"
+        "href": "/ar//h/about-us",
+        "text": "معلومات عنا"
       },
       {
-        "href": "/en//h/careers",
-        "text": "Careers"
+        "href": "/ar//h/careers",
+        "text": "وظائف"
       },
       {
-        "href": "/en//h/press-releases",
-        "text": "Press releases"
+        "href": "/ar//h/press-releases",
+        "text": "تصريحات صحفيه"
       }
     ]
   },
@@ -50,47 +50,47 @@
     "socials": [
       {
         "href": "https://www.instagram.com/xhawi_official?igsh=c2xha21rbjYyaG1s",
-        "text": "Instagram"
+        "text": "انستجرام"
       },
       {
         "href": "https://www.facebook.com/share/8SJhyN75RRbhiFS4/?mibextid=wwXIfr",
-        "text": "Facebook"
+        "text": "فيسبوك"
       },
       {
         "href": "https://youtube.com/@xhawi_official?si=kxpKFtcpGfbPJoja",
-        "text": "Youtube"
+        "text": "يوتيوب"
       },
       {
         "href": "https://www.linkedin.com/company/xhawi/",
-        "text": "LinkedIn"
+        "text": "لينكدإن"
       },
       {
         "href": "https://x.com/xhawiofficial?t= ILrKfUTeCvpEwg_-jhh9Q&s=09",
-        "text": "X"
+        "text": "تويتر"
       }
     ],
-    "title": "Connect with us"
+    "title": "اتصل بنا"
   },
   "helpLinksSection": {
     "links": [
       {
-        "href": "/en//h/customer-terms-and-conditions",
-        "text": "Customer terms & conditions"
+        "href": "/ar//h/customer-terms-and-conditions",
+        "text": "شروط وأحكام العميل"
       },
       {
-        "href": "/en//h/returns-and-refunds",
-        "text": "Returns & refunds"
+        "href": "/ar//h/returns-and-refunds",
+        "text": "الإرجاعات واسترداد الأموال"
       },
       {
-        "href": "/en//faq",
-        "text": "FAQ"
+        "href": "/ar//faq",
+        "text": "الأسئلة المتداولة"
       },
       {
-        "href": "/en//contactus",
-        "text": "Contact us"
+        "href": "/ar//contactus",
+        "text": "تواصل معنا  "
       }
     ],
-    "title": "Let us help you"
+    "title": "يدعم"
   },
   "copyrightSection": {
     "logo": {
@@ -99,12 +99,12 @@
       "width": 60,
       "height": 13
     },
-    "copyright": "Oman Telecommunication Company SAOG © 2025"
+    "copyright": " الشركة العمانية للاتصالات ش م ع ع © 2024"
   },
   "policySection": {
-    "privacyPolicy": "/en/h/privacy-policy",
-    "cookiePolicy": "/en/h/cookie-policy",
-    "cookieLabel": "Cookie policy",
-    "privacyLabel": "Privacy policy"
+    "privacyPolicy": "/ar/h/privacy-policy",
+    "cookiePolicy": "/ar/h/cookie-policy",
+    "cookieLabel": "سياسة ملفات الارتباط",
+    "privacyLabel": "سياسة الخصوصية"
   }
 }

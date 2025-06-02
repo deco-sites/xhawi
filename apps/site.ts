@@ -1,10 +1,15 @@
-import { type App as A, type AppContext as AC } from "@deco/deco";
+import {
+  type App as A,
+  type AppContext as AC,
+  type AppMiddlewareContext as AMC,
+} from "@deco/deco";
 import { type Section } from "@deco/deco/blocks";
 import commerce from "apps/commerce/mod.ts";
 import VTEX from "apps/vtex/mod.ts";
 import { Props as WebsiteProps } from "apps/website/mod.ts";
 import { rgb24 } from "std/fmt/colors.ts";
 import manifest, { Manifest } from "../manifest.gen.ts";
+import middleware from "../middleware.tsx";
 
 export interface Props extends WebsiteProps {
   /**
@@ -14,6 +19,16 @@ export interface Props extends WebsiteProps {
    */
   platform: Platform;
   theme?: Section;
+  /**
+   * @title Supported Languages
+   * @description List of supported languages
+   */
+  supportedLanguages?: string[];
+  /**
+   * @title Default Language
+   * @default en
+   */
+  defaultLanguage?: string;
 }
 
 export type Platform =
@@ -30,6 +45,7 @@ export let _platform: Platform = "custom";
 export type App = ReturnType<typeof Site>;
 // @ts-ignore somehow deno task check breaks, I have no idea why
 export type AppContext = AC<App>;
+export type AppMiddlewareContext = AMC<App>;
 
 const color = (platform: string) => {
   switch (platform) {
@@ -66,9 +82,8 @@ export default function Site({ ...state }: Props): A<Manifest, Props, [
     state,
     manifest,
     // @ts-ignore - VTEX is injected later
-    dependencies: [
-      commerce(state),
-    ],
+    dependencies: [commerce(state)],
+    middleware,
   };
 }
 

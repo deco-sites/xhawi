@@ -2,8 +2,9 @@ import { Product } from "apps/commerce/types.ts";
 import Card from "../../components/product/shelf/Card.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import Slider from "../../components/ui/slider/index.ts";
-import { placeholderProduct } from "../../sdk/products.ts";
 import { clx } from "../../sdk/clx.ts";
+import { useI18n } from "../../sdk/i18n.ts";
+import { placeholderProduct } from "../../sdk/products.ts";
 
 interface Props {
   products: Product[] | null;
@@ -23,6 +24,7 @@ interface Props {
 
 export default function ProductShelf(props: Props) {
   const { title, isLoadingFallback = false, spacing } = props;
+  const { dir, translations, language } = useI18n(props);
 
   if (!props.products?.length && !isLoadingFallback) {
     return null;
@@ -38,7 +40,7 @@ export default function ProductShelf(props: Props) {
         <div id="homePageproductCarousel1">
           <div class="Product-carousel min-h-110 flex flex-col p-0 transition-all lg:mx-[0px!important] lg:max-h-192 [&_.slick-slide]:p-2.5">
             <Slider.Root
-              js={{ align: "start" }}
+              js={{ align: "start", dir }}
               class={clx(
                 "lg:pt-[48px] pt-[30px] [--slide-spacing:0rem] [--slide-size:207px] lg:[--slide-size:348px]",
                 spacing?.bottom && "lg:pb-[48px] pb-[30px]",
@@ -53,13 +55,13 @@ export default function ProductShelf(props: Props) {
               >
                 <Slider.PrevButton
                   type="button"
-                  class="flex size-10 items-center justify-center rounded-full border border-[#dddddd] bg-white lg:size-12 rotate-180 mr-2.5 group"
+                  class="flex size-10 items-center justify-center rounded-full border border-[#dddddd] bg-white lg:size-12 rotate-180 ltr:mr-2.5 group"
                 >
                   <Icon
                     id="right-arrow-small"
                     width={18}
                     height={18}
-                    class="group-disabled:opacity-20 transition-opacity duration-300"
+                    class="group-disabled:opacity-20 transition-opacity duration-300 rtl:rotate-180"
                   />
                 </Slider.PrevButton>
                 <Slider.NextButton
@@ -70,19 +72,19 @@ export default function ProductShelf(props: Props) {
                     id="right-arrow-small"
                     width={18}
                     height={18}
-                    class="group-disabled:opacity-20 transition-opacity duration-300"
+                    class="group-disabled:opacity-20 transition-opacity duration-300 rtl:rotate-180"
                   />
                 </Slider.NextButton>
               </div>
               <div
                 class="carouselSliderContainer relative"
-                style="direction: ltr;"
+                style={{ direction: dir }}
               >
-                <div
-                  class="react-multi-carousel-list carousel-container"
-                  dir="ltr"
-                >
-                  <Slider.Carousel class="react-multi-carousel-track">
+                <div class="react-multi-carousel-list carousel-container">
+                  <Slider.Carousel
+                    class="react-multi-carousel-track"
+                    dir={dir}
+                  >
                     {products.map((product, index) => (
                       <Slider.Item
                         index={index}
@@ -90,9 +92,13 @@ export default function ProductShelf(props: Props) {
                         aria-hidden="false"
                         class="react-multi-carousel-item react-multi-carousel-item--active carousel-item"
                       >
-                        {isLoadingFallback
-                          ? <Card.LoadingFallback />
-                          : <Card product={product} />}
+                        {isLoadingFallback ? <Card.LoadingFallback /> : (
+                          <Card
+                            product={product}
+                            labels={translations.product}
+                            currentLanguage={language}
+                          />
+                        )}
                       </Slider.Item>
                     ))}
                   </Slider.Carousel>

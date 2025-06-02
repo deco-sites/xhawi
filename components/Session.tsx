@@ -2,22 +2,26 @@ import { Head } from "$fresh/runtime.ts";
 import { useScript } from "@deco/deco/hooks";
 import { type Person } from "apps/commerce/types.ts";
 import { type AppContext } from "../apps/site.ts";
+import { useI18n } from "../sdk/i18n.ts";
 import { useComponent } from "../sections/Component.tsx";
 import { type Item } from "./minicart/Item.tsx";
 import CartProvider, { type Minicart } from "./minicart/Minicart.tsx";
 import UserProvider from "./user/Provider.tsx";
 import WishlistProvider, { type Wishlist } from "./wishlist/Provider.tsx";
+
 declare global {
   interface Window {
     STOREFRONT: SDK;
   }
 }
+
 export interface Cart {
   currency: string;
   coupon: string;
   value: string;
   items: Item[];
 }
+
 export interface SDK {
   CART: {
     getCart: () => Cart | null;
@@ -48,8 +52,11 @@ export interface SDK {
     dispatch: (form: HTMLFormElement) => void;
   };
 }
+
 const sdk = () => {
-  document.dir = "ltr";
+  const isArabic = window.location.pathname.startsWith("/ar/") ||
+    window.location.pathname === "/ar";
+  document.dir = isArabic ? "rtl" : "ltr";
   const target = new EventTarget();
   const createCartSDK = (): SDK["CART"] => {
     let form: HTMLFormElement | null = null;
@@ -232,8 +239,9 @@ const sdk = () => {
     WISHLIST: createWishlistSDK(),
   };
 };
+
 export const action = async (
-  _props: unknown,
+  props: Props,
   _req: Request,
   ctx: AppContext,
 ) => {
@@ -243,26 +251,37 @@ export const action = async (
     ctx.invoke("site/loaders/user.ts"),
   ]);
   return {
+    ...props,
     mode: "eager",
     minicart,
     wishlist,
     user,
   };
 };
-export const loader = (_props: unknown, _req: Request, _ctx: AppContext) => {
+
+export const loader = (props: Props, _req: Request, _ctx: AppContext) => {
   return {
+    ...props,
     mode: "lazy",
   };
 };
+
 interface Props {
   minicart?: Minicart | null;
   wishlist?: Wishlist | null;
   user?: Person | null;
   mode?: "eager" | "lazy";
 }
-export default function Session(
-  { minicart, wishlist, user, mode = "lazy" }: Props,
-) {
+
+export default function Session(props: Props) {
+  const { minicart, wishlist, user, mode = "lazy" } = props;
+  const {
+    translations,
+    dir,
+    currentUrl,
+    language,
+  } = useI18n(props);
+
   if (mode === "lazy") {
     return (
       <>
@@ -272,13 +291,22 @@ export default function Session(
             dangerouslySetInnerHTML={{ __html: useScript(sdk) }}
           />
         </Head>
-        <div hx-trigger="load" hx-post={useComponent(import.meta.url)} />
+        <div
+          hx-trigger="load"
+          hx-post={useComponent(import.meta.url)}
+        />
       </>
     );
   }
+
   return (
     <>
-      <CartProvider cart={minicart!} />
+      <CartProvider
+        minicart={minicart!}
+        labels={translations}
+        dir={dir}
+        currentUrl={currentUrl(language)}
+      />
       <WishlistProvider wishlist={wishlist ?? null} />
       <UserProvider user={user ?? null} />
     </>

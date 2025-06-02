@@ -67,6 +67,14 @@ export default function ControllerScript() {
                 if (!state) {
                   element.removeAttribute("data-state");
                 } else {
+                  if (
+                    state === "open" && element.hasAttribute("data-before-open")
+                  ) {
+                    const beforeOpen = element.getAttribute("data-before-open");
+                    if (beforeOpen) {
+                      eval(beforeOpen);
+                    }
+                  }
                   element.setAttribute("data-state", state);
                 }
               });

@@ -6,10 +6,28 @@ import MenuHeader from "./MenuHeader.tsx";
 import MenuItem, { type MenuItemProps } from "./MenuItem.tsx";
 
 interface Props {
+  labels: {
+    currentLanguage: string;
+    omr: string;
+    menuHeader: string;
+    backToMenu: string;
+    changeLanguage: string;
+  };
+  currentLanguage: string;
+  enUrl: string;
+  arUrl: string;
+  dir: "ltr" | "rtl";
   categories: MenuItemProps[];
 }
 
-export default function Menu({ categories }: Props) {
+export default function Menu({
+  categories,
+  labels,
+  currentLanguage,
+  enUrl,
+  arUrl,
+  dir,
+}: Props) {
   return (
     <>
       <div
@@ -25,12 +43,12 @@ export default function Menu({ categories }: Props) {
         class={clx(
           "fixed right-0 border bottom-0 z-[100] mt-0 flex h-full w-[300px] touch-auto flex-col overflow-scroll !border-none bg-white data-[state=closed]:ltr:-left-[300px] data-[state=closed]:rtl:-right-[300px] transition-all duration-300 ltr:left-0 rtl:right-0 rounded-none",
         )}
-        dir="ltr"
+        dir={dir}
         tabIndex={-1}
       >
         <div class="mx-auto w-[100px] rounded-full bg-muted"></div>
         <div
-          dir="ltr"
+          dir={dir}
           class="relative overflow-hidden h-full bg-white"
           style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
         >
@@ -45,15 +63,24 @@ export default function Menu({ categories }: Props) {
                 data-controlled-by="side-menu-view"
                 data-state="menu"
               >
-                <MenuHeader />
-                <LanguageSelector />
+                <MenuHeader header={labels.menuHeader} dir={dir} />
+                <LanguageSelector
+                  currentLanguage={currentLanguage}
+                  enUrl={enUrl}
+                  arUrl={arUrl}
+                  dir={dir}
+                  labels={{
+                    backToMenu: labels.backToMenu,
+                    changeLanguage: labels.changeLanguage,
+                  }}
+                />
                 <div class="group-data-[state=menu]:block hidden">
                   <div
                     class="mb-[110px] w-full px-0 py-0"
                     data-orientation="vertical"
                   >
                     {categories.map((category) => (
-                      <MenuItem key={category.label} {...category} />
+                      <MenuItem key={category.label} {...category} dir={dir} />
                     ))}
                   </div>
                 </div>
@@ -62,19 +89,21 @@ export default function Menu({ categories }: Props) {
                   data-controller="side-menu-view"
                   data-value="language-selector"
                   class="absolute bottom-0 w-full bg-omantel-light-green px-4 py-6 text-black group-data-[state=menu]:block hidden"
-                  dir="ltr"
+                  dir={dir}
                 >
                   <div class="flex items-center justify-between">
                     <div class="flex w-full items-center">
                       <Icon id="globe-outline" size={24} />
                       <div class="flex flex-col">
-                        <span class="ml-3 text-sm">English</span>
+                        <span class="ml-3 text-sm">
+                          {labels.currentLanguage}
+                        </span>
                         <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-base font-medium">
-                          OMR
+                          {labels.omr}
                         </label>
                       </div>
                     </div>
-                    <Icon id="chevron-right" size={24} />
+                    <Icon id="chevron-right" size={24} class="rtl:rotate-180" />
                   </div>
                 </button>
               </div>

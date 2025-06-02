@@ -45,7 +45,7 @@
       "excludePathsFromDecoSiteMap": []
     },
     {
-      "__resolveType": "website/loaders/pages.ts"
+      "__resolveType": "site/loaders/pages.ts"
     },
     {
       "__resolveType": "website/loaders/redirects.ts"
@@ -57,7 +57,7 @@
   "commerce": {
     "platform": "other"
   },
-  "platform": "shopify",
+  "platform": "vtex",
   "__resolveType": "site/apps/site.ts",
   "firstByteThresholdMS": false,
   "abTesting": {
@@ -73,5 +73,10 @@
     "framework": "htmx"
   },
   "whilelistURLs": [],
-  "whitelistPatterns": []
+  "whitelistPatterns": [],
+  "supportedLanguages": [
+    "en",
+    "ar"
+  ],
+  "defaultLanguage": "en"
 }

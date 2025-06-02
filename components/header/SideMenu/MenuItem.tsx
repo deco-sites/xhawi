@@ -15,6 +15,10 @@ export interface MenuItemProps {
   label: string;
   url?: string;
   subcategories?: SubCategory[];
+  /**
+   * @ignore
+   */
+  dir?: "ltr" | "rtl";
 }
 
 function SubCategoryItem({ label, url }: SubCategory) {
@@ -29,12 +33,12 @@ function SubCategoryItem({ label, url }: SubCategory) {
   );
 }
 
-export default function MenuItem({ label, subcategories }: MenuItemProps) {
+export default function MenuItem({ label, subcategories, dir }: MenuItemProps) {
   const id = useId();
   return (
     <div
       class="border-b"
-      dir="ltr"
+      dir={dir}
     >
       <input type="checkbox" id={id} name="menu-item" class="peer hidden" />
       <h3
@@ -46,7 +50,7 @@ export default function MenuItem({ label, subcategories }: MenuItemProps) {
           type="button"
           data-as-radio={id}
           class="flex flex-1 items-center justify-between transition-all hover:underline [&[data-state=open]>svg]:rotate-180 px-4 py-6 text-base font-medium"
-          dir="ltr"
+          dir={dir}
         >
           {label}
           <svg

@@ -3,9 +3,14 @@ import Popup from "../../ui/Popup.tsx";
 
 interface Props {
   parentId: string;
+  labels: {
+    signIn: string;
+    newUser: string;
+    signUp: string;
+  };
 }
 
-export default function ProfilePopup({ parentId }: Props) {
+export default function ProfilePopup({ parentId, labels }: Props) {
   return (
     <>
       <Popup.Backdrop controlledBy={parentId} />
@@ -13,7 +18,7 @@ export default function ProfilePopup({ parentId }: Props) {
         dir="ltr"
         data-controlled-by={parentId}
         data-state="closed"
-        class="data-[state=closed]:hidden fixed left-0 top-0 transform translate-x-[94px] translate-y-[56px] min-w-max will-change-transform z-50"
+        class="data-[state=closed]:hidden absolute left-0 top-[calc(100%+6px)] -translate-x-[45%] lg:translate-x-0 transform min-w-max will-change-transform z-50"
       >
         <Popup
           class={clx(
@@ -41,17 +46,17 @@ export default function ProfilePopup({ parentId }: Props) {
               class="inline-flex items-center justify-center transition duration-200 bg-omantel-electric-green text-black hover:bg-omantel-dark-green active:bg-omantel-dark-green focus:bg-omantel-dark-green active:border-2 active:border-omantel-dark-green active:ring-omantel-dark-green focus:border-omantel-dark-green focus:active:border-white focus:active:ring-2 h-full w-full rounded-md px-4 py-3 text-base lg:w-[274px]"
               href="/signin"
             >
-              Sign In
+              {labels.signIn}
             </a>
             <p class="text-center text-omantel-faded-black">
-              <span class="new-user">New to XHAWI?</span>{" "}
+              <span class="new-user">{labels.newUser}</span>{" "}
               <a
                 hreflang="en-US"
                 class="inline-flex items-center justify-center transition duration-200  rounded-md pt-4 text-sm text-omantel-secondary-blue hover:text-black"
                 id="signupLink"
                 href="/signup"
               >
-                Sign up here &gt;
+                {labels.signUp} &gt;
               </a>
             </p>
           </div>

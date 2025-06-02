@@ -4,11 +4,12 @@ import Item, {
 import Slider from "../../components/ui/slider/index.ts";
 
 interface Props {
+  title: string;
   categories: ItemProps[];
 }
 
 export default function TrendingCategories(props: Props) {
-  const { categories } = props;
+  const { categories, title } = props;
 
   return (
     <div class="container-fluid bg-white">
@@ -25,7 +26,7 @@ export default function TrendingCategories(props: Props) {
               class="category-carousel-heading sm-0:text-base/[24px] text-om-black my-3 w-full font-semibold ltr:pr-[100px] rtl:pl-[100px] sm:text-2xl/[36px] lg:h-[48px]"
               id="CategoryCarouselHeading"
             >
-              Trending categories
+              {title}
             </div>
             <Slider.Carousel class="[--slide-size:133px] lg:[--slide-size:229px]">
               {categories.map((category, index) => (
