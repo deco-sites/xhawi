@@ -4463,10 +4463,6 @@ video {
     margin-right: -20px;
   }
 
-  .lg\:rtl\:items-end:where([dir="rtl"], [dir="rtl"] *) {
-    align-items: flex-end;
-  }
-
   .rtl\:lg\:px-32:where([dir="rtl"], [dir="rtl"] *) {
     padding-left: 8rem;
     padding-right: 8rem;

@@ -28,14 +28,17 @@ export interface ItemProps {
    * @ignore
    */
   preload?: boolean;
+  /**
+   * @ignore
+   */
+  dir: "ltr" | "rtl";
 }
 
 export default function Item(props: ItemProps) {
-  const { image, title, description, button, preload = false } = props;
+  const { image, title, description, button, preload = false, dir } = props;
 
   return (
-    <div class="w-full h-full inline-block flex-none" // style="left: 0%; right: 0%; transform: translateX(-430px) translateZ(0px);"
-    >
+    <div class="w-full h-full inline-block flex-none" dir={dir}>
       <section class="relative flex h-full justify-center transition-all lg:items-center lg:justify-normal  cursor-pointer">
         <Image
           sources={{
@@ -50,7 +53,7 @@ export default function Item(props: ItemProps) {
         />
         <div
           style={{ color: title.color || "white" }}
-          class="z-0 lg:flex lg:flex-col pt-8 text-center ltr:lg:px-32 ltr:lg:text-left lg:rtl:items-end rtl:lg:px-32 lg:rtl:text-end"
+          class="z-0 lg:flex lg:flex-col pt-8 text-center ltr:lg:px-32 ltr:lg:text-left rtl:lg:px-32 lg:rtl:text-end"
         >
           <span class="font-sans text-[10px] font-semibold uppercase leading-[18px] lg:text-[12px]">
           </span>

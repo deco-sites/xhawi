@@ -147,7 +147,7 @@ export default function Cart(props: Props) {
           controlledBy={MINICART_POPUP_ID}
           role="menu"
           aria-orientation="vertical"
-          dir="ltr"
+          dir={dir}
           class={clx(
             "min-w-[12rem] overflow-hidden border bg-popover text-popover-foreground shadow-md slide-in-from-top-2 gap-4 !rounded-t-none max-w-xs lg:max-w-[432px] p-2 lg:min-w-[318px] lg:p-0 rounded-sm z-[100]",
             "data-[state=closed]:hidden",

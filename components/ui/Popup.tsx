@@ -23,7 +23,6 @@ function Popup(props: Props) {
       data-controlled-by={controlledBy}
       role="menu"
       aria-orientation="vertical"
-      dir="ltr"
       data-side={side}
       data-align={align}
       data-state="closed"

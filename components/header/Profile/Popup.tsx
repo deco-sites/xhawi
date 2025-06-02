@@ -32,7 +32,7 @@ export default function ProfilePopup({ parentId, labels, dir }: Props) {
           controlledBy={parentId}
           role="menu"
           aria-orientation="vertical"
-          dir="ltr"
+          dir={dir}
           side="bottom"
           align="start"
         >

@@ -2,6 +2,7 @@ import Dots from "../../components/images/carousel/Dots.tsx";
 import Item, { ItemProps } from "../../components/images/carousel/Item.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import Slider from "../../components/ui/slider/index.ts";
+import { useI18n } from "../../sdk/i18n.ts";
 
 interface Props {
   items: ItemProps[];
@@ -13,14 +14,15 @@ interface Props {
 
 export default function Carousel(props: Props) {
   const { items, preload = false } = props;
+  const { dir } = useI18n(props);
 
   return (
     <div class="bg-omantel-background-grey">
       <div class="container-width">
         <Slider.Root
-          js={{ align: "center", interval: 5000 }}
+          js={{ align: "center", interval: 5000, dir }}
           class="relative overflow-hidden h-[400px] sm:h-[310px] md:h-[310px] lg:h-[310px]"
-          dir="ltr"
+          dir={dir}
         >
           <Slider.Carousel class="w-full h-full flex absolute top-0">
             {items.map((item, index) => (
@@ -28,6 +30,7 @@ export default function Carousel(props: Props) {
                 <Item
                   key={item.title}
                   {...item}
+                  dir={dir}
                   preload={preload && index === 0}
                 />
               </Slider.Item>

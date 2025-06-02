@@ -107,7 +107,7 @@ export default function Header(props: Props) {
           <LanguageSelector
             labels={{
               currentLanguage: translations.currentLanguage,
-              omr: translations.menu.omr,
+              omr: translations.product.omr,
               changeLanguage: translations.menu.changeLanguage,
             }}
             dir={dir}
