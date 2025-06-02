@@ -42,7 +42,7 @@ export default function BrandCarousel(props: Props) {
                     <Icon
                       id="right-arrow-small"
                       size={12}
-                      class="rotate-180 group-disabled:opacity-25 transition-opacity duration-300 rtl:rotate-180"
+                      class="rotate-180 group-disabled:opacity-25 transition-opacity duration-300 rtl:rotate-0"
                     />
                   </Slider.PrevButton>
                   <Slider.NextButton class="z-10 flex size-10 lg:size-12 items-center justify-center rounded-full border border-omantel-platinum p-0 text-center text-black transition-all duration-300 ease-in-out disabled:cursor-not-allowed group">
