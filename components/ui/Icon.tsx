@@ -15,7 +15,17 @@ export type AvailableIcons =
   | "seller-search"
   | "arrow-up"
   | "trend-up"
-  | "close-small";
+  | "close-small"
+  | "arrow-up-2"
+  | "arrow-down-2"
+  | "share"
+  | "link-copy"
+  | "facebook"
+  | "pinterest"
+  | "X"
+  | "secure-payment"
+  | "shipping"
+  | "sold-by";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

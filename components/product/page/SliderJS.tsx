@@ -59,8 +59,6 @@ const setup = (
       "[data-slide='prev']",
     );
 
-    const dots = root.querySelector("[data-dots]");
-
     const autoplay = interval && interval > 0
       ? EmblaCarouselAutoplay({ stopOnInteraction: false, delay: interval })
       : null;
@@ -82,41 +80,17 @@ const setup = (
       embla.scrollNext();
     }, false);
 
-    let dotNodes: HTMLElement[] = [];
-
     const setupDots = (): void => {
-      if (!dots) {
-        return;
-      }
-
-      const dotElement = dots.innerHTML;
-      dots.innerHTML = embla
-        .scrollSnapList()
-        .map(() => dotElement)
-        .join("");
-
       const scrollTo = (index: number): void => {
         embla.scrollTo(index);
       };
 
-      dotNodes = Array.from(dots.querySelectorAll("[data-dot]"));
-      dotNodes.forEach((dotNode, index) => {
-        dotNode.addEventListener("click", () => {
+      embla.slideNodes().forEach((node, index) => {
+        node.addEventListener("click", () => {
           autoplay?.reset();
           scrollTo(index);
         }, false);
       });
-    };
-
-    const toggleActiveDot = (): void => {
-      if (!dotNodes.length) {
-        return;
-      }
-
-      const previous = embla.previousScrollSnap();
-      const selected = embla.selectedScrollSnap();
-      dotNodes[previous]?.removeAttribute("data-selected");
-      dotNodes[selected]?.setAttribute("data-selected", "");
     };
 
     const updateButtons = () => {
@@ -129,16 +103,26 @@ const setup = (
       if (nextButton) {
         nextButton.disabled = !canScrollNext;
       }
+
+      const currentSnapIndex = embla.selectedScrollSnap();
+      const nodes = embla.slideNodes();
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        if (i === currentSnapIndex) {
+          node.setAttribute("data-selected", "");
+          node.querySelector("label")?.click();
+        } else {
+          node.removeAttribute("data-selected");
+        }
+      }
     };
 
     const onInit = () => {
       setupDots();
-      toggleActiveDot();
       updateButtons();
     };
 
     const onSelect = () => {
-      toggleActiveDot();
       updateButtons();
     };
 

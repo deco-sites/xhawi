@@ -1,6 +1,7 @@
 import { Product } from "apps/commerce/types.ts";
 import { clx } from "../../../sdk/clx.ts";
 import { formatPrice } from "../../../sdk/format.ts";
+import { getColors, getHighlight } from "../../../sdk/products.ts";
 import { relative } from "../../../sdk/url.ts";
 import { useOffer } from "../../../sdk/useOffer.ts";
 import Image from "../../images/Image.tsx";
@@ -33,28 +34,15 @@ function Card(props: Props) {
     price,
   } = useOffer(product.offers);
 
-  const highlight = product.additionalProperty?.find((property) =>
-    property.description === "highlight"
-  )?.value?.split("|")?.[currentLanguage === "ar" ? 1 : 0];
+  const highlight = getHighlight(product, currentLanguage);
 
   const currentColor = product.additionalProperty?.find((property) =>
     property.name === "Color"
   )?.value?.split("|")?.[1];
 
-  const colors = product.isVariantOf?.hasVariant?.map((variant) => ({
-    url: variant.url,
-    color: variant.additionalProperty?.find((property) =>
-      property.name === "Color"
-    )?.value?.split("|")?.[1],
-  })).filter((color, index, arr): color is { url: string; color: string } =>
-    !!color.color && !!color.url &&
-    index === arr.findIndex((c) => c.color === color.color) &&
-    color.color !== currentColor
-  ) || [];
-
-  if (name === "Osmo Pizza Kit - 901-00023") {
-    console.log(product);
-  }
+  const colors = getColors(product).filter(({ color }) =>
+    color !== currentColor
+  );
 
   return (
     <div

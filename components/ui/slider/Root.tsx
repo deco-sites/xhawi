@@ -4,7 +4,9 @@ import { useId } from "../../../sdk/useId.ts";
 import JS, { type Props as JSProps } from "./JS.tsx";
 
 type Props = JSX.IntrinsicElements["div"] & {
-  js: Omit<JSProps, "rootId">;
+  js?: Omit<JSProps, "rootId"> & {
+    component?: (props: JSProps) => JSX.Element;
+  };
 };
 
 export default function Root({
@@ -16,6 +18,8 @@ export default function Root({
   & Omit<Props, "rootId">) {
   const id = typeof _id === "string" ? _id : `slider-${useId()}`;
 
+  const Script = js?.component ?? JS;
+
   return (
     <>
       <div
@@ -24,7 +28,7 @@ export default function Root({
         data-root
         class={clx("embla", props.class, props.className)}
       />
-      <JS rootId={id} {...js} />
+      <Script rootId={id} {...js} />
     </>
   );
 }

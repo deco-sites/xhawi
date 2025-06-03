@@ -13,3 +13,23 @@ export function placeholderProduct(): Product {
     },
   };
 }
+
+export function getHighlight(product: Product, currentLanguage: string) {
+  const index = currentLanguage === "ar" ? 1 : 0;
+
+  return product.additionalProperty?.find((property) =>
+    property.description === "highlight"
+  )?.value?.split("|")?.[index];
+}
+
+export function getColors(product: Product) {
+  return product.isVariantOf?.hasVariant?.map((variant) => ({
+    url: variant.url,
+    color: variant.additionalProperty?.find((property) =>
+      property.name === "Color"
+    )?.value?.split("|")?.[1],
+  })).filter((color, index, arr): color is { url: string; color: string } =>
+    !!color.color && !!color.url &&
+    index === arr.findIndex((c) => c.color === color.color)
+  ) || [];
+}
