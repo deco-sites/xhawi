@@ -1,5 +1,7 @@
-export const MINICART_FORM_ID = "minicart-form";
+export const MINICART_FORM_ID = "minicart-container";
 export const MINICART_POPUP_ID = "minicart-popup";
+export const MINICART_BUTTON_ID = "minicart-button";
+export const MINICART_COUNTER_ID = "minicart-counter";
 
 export const SIDEMENU_CONTAINER_ID = "sidemenu";
 export const SIDEMENU_DRAWER_ID = "sidemenu-drawer";

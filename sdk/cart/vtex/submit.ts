@@ -6,7 +6,6 @@ const actions: CartSubmitActions<AppContext> = {
   addToCart: async ({ addToCart }, req, ctx) => {
     const response = await ctx.invoke(
       "vtex/actions/cart/addItems.ts",
-      // @ts-expect-error I don't know how to fix this
       addToCart,
     );
 

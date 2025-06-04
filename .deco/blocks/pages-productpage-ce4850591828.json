@@ -74,6 +74,19 @@
               "__resolveType": "site/sections/Product/ProductDetails.tsx",
               "page": {
                 "__resolveType": "PDP Loader"
+              },
+              "deliveryInformation": {
+                "title": "Delivery Information",
+                "items": [
+                  {
+                    "title": "Same Day Delivery",
+                    "description": "Orders placed after 3 PM GST cannot be fulfilled on the same day"
+                  },
+                  {
+                    "title": "Next Day Delivery",
+                    "description": "Receive your order within the next day"
+                  }
+                ]
               }
             }
           },

@@ -75,26 +75,27 @@ const sdk = () => {
           `[data-item-id="${itemId}"] input[type="number"]`,
         )?.valueAsNumber,
       setQuantity: (itemId, quantity) => {
-        const input = form?.querySelector<HTMLInputElement>(
-          `[data-item-id="${itemId}"] input[type="number"]`,
-        );
         const item = getCart()?.items.find((item) =>
           // deno-lint-ignore no-explicit-any
           (item as any).item_id === itemId
         );
-        if (!input || !item) {
+        if (!item) {
           return false;
         }
-        input.value = quantity.toString();
-        if (input.validity.valid) {
-          window.DECO.events.dispatch({
-            name: item.quantity < input.valueAsNumber
-              ? "add_to_cart"
-              : "remove_from_cart",
-            params: { items: [{ ...item, quantity }] },
-          });
+
+        window.DECO.events.dispatch({
+          name: item.quantity < quantity ? "add_to_cart" : "remove_from_cart",
+          params: { items: [{ ...item, quantity }] },
+        });
+        const itemCard = document.getElementById(itemId);
+        const input = itemCard?.querySelector<HTMLInputElement>(
+          "input[type='number']",
+        );
+        if (input) {
+          input.value = quantity.toString();
           input.dispatchEvent(new Event("change", { bubbles: true }));
         }
+
         return true;
       },
       addToCart: (item, platformProps) => {
@@ -105,6 +106,7 @@ const sdk = () => {
           `button[name="action"][value="add-to-cart"]`,
         );
         if (!input || !button) {
+          console.error("Missing add-to-cart input or button");
           return false;
         }
         window.DECO.events.dispatch({

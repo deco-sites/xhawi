@@ -71,17 +71,10 @@ export default function ImageGallery(props: Props) {
               </div>
               <div class="tools flex justify-center gap-1">
                 <button>
-                  <img
-                    alt="Zoom In"
-                    loading="lazy"
-                    width="28"
-                    height="28"
-                    decoding="async"
-                    data-nimg="1"
+                  <Icon
+                    id="zoom"
+                    size={28}
                     class="!p-0"
-                    src="/icons/zoom-icon.svg"
-                    data-cookiecategory="21"
-                    style="color: transparent;"
                   />
                 </button>
               </div>

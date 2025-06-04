@@ -5,6 +5,7 @@ type Props = JSX.IntrinsicElements["div"] & {
   controlledBy: string;
   side?: "bottom" | "top" | "left" | "right";
   align?: "start" | "center" | "end";
+  state?: "open" | "closed";
 };
 
 function Popup(props: Props) {
@@ -15,6 +16,7 @@ function Popup(props: Props) {
     children,
     class: _class,
     className,
+    state = "closed",
     ...rest
   } = props;
 
@@ -25,7 +27,7 @@ function Popup(props: Props) {
       aria-orientation="vertical"
       data-side={side}
       data-align={align}
-      data-state="closed"
+      data-state={state}
       tabIndex={-1}
       {...rest}
       class={clx(_class, className)}
@@ -35,12 +37,18 @@ function Popup(props: Props) {
   );
 }
 
-function Backdrop({ controlledBy }: { controlledBy: string }) {
+function Backdrop({
+  controlledBy,
+  state = "closed",
+}: {
+  controlledBy: string;
+  state?: "open" | "closed";
+}) {
   return (
     <div
       data-controller={controlledBy}
       data-controlled-by={controlledBy}
-      data-state="closed"
+      data-state={state}
       class="z-[49] fixed inset-0 data-[state=closed]:hidden"
     />
   );

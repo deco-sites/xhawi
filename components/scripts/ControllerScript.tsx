@@ -76,6 +76,13 @@ export default function ControllerScript() {
                     }
                   }
                   element.setAttribute("data-state", state);
+
+                  const onUpdateState = element.getAttribute(
+                    "data-on-update-state",
+                  );
+                  if (onUpdateState) {
+                    eval(onUpdateState);
+                  }
                 }
               });
             }

@@ -23,7 +23,7 @@ export default function Color(props: Props) {
         selected
           ? clx(
             "border-2 border-gray-50 shadow-[0px_0px_0px_5px_#95c655] outline outline-[3px] outline-white",
-            "lg:border-2 lg:shadow-[0px_0px_0px_2px_#95c655]",
+            "lg:border-2 lg:shadow-[0px_0px_0px_2px_#95c655] lg:outline-none",
           )
           : "border border-omantel-grey",
       )}

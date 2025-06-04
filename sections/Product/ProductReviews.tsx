@@ -1,3 +1,5 @@
+import Icon from "../../components/ui/Icon.tsx";
+
 export default function ProductReviews() {
   return (
     <div class="container-fluid">
@@ -282,20 +284,9 @@ export default function ProductReviews() {
                     aria-expanded="false"
                     aria-controls="radix-:r1c:"
                     data-state="closed"
-                    class="btn flex items-center lg:hidden"
+                    class="btn flex items-center lg:hidden gap-3"
                   >
-                    <img
-                      alt="Filter menu"
-                      loading="lazy"
-                      width="20"
-                      height="20"
-                      decoding="async"
-                      data-nimg="1"
-                      class="inline h-6 w-6 ltr:mr-3 rtl:ml-3"
-                      src="/icons/filter.svg"
-                      data-cookiecategory="21"
-                      style="color: transparent;"
-                    />Filters
+                    <Icon id="filter" size={20} />Filters
                   </button>
                 </div>
               </div>

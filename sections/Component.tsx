@@ -68,6 +68,7 @@ export const loader = async (
       ),
     };
   } catch (error) {
+    console.error(error);
     return {
       Component: () => <ErrorFallback error={error} />,
     };
@@ -91,6 +92,7 @@ export const action = async (
       ),
     };
   } catch (error) {
+    console.error(error);
     return {
       Component: () => <ErrorFallback error={error} />,
     };
