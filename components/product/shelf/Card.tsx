@@ -36,13 +36,7 @@ function Card(props: Props) {
 
   const highlight = getHighlight(product, currentLanguage);
 
-  const currentColor = product.additionalProperty?.find((property) =>
-    property.name === "Color"
-  )?.value?.split("|")?.[1];
-
-  const colors = getColors(product).filter(({ color }) =>
-    color !== currentColor
-  );
+  const { currentColor, colors } = getColors(product, currentLanguage);
 
   return (
     <div
@@ -149,7 +143,7 @@ function Card(props: Props) {
                 type="button"
                 class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 relative h-4 w-4 rounded-full p-2 text-[0] lg:h-4 lg:w-4 border border-omantel-grey color-button cursor-pointer"
                 style={{
-                  backgroundColor: currentColor,
+                  backgroundColor: currentColor?.hex,
                 }}
               >
               </button>
@@ -170,7 +164,7 @@ function Card(props: Props) {
                 type="button"
                 class="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 relative h-4 w-4 rounded-full p-2 text-[0] lg:h-4 lg:w-4 border border-omantel-grey color-button cursor-pointer"
                 style={{
-                  backgroundColor: color.color,
+                  backgroundColor: color.hex,
                 }}
               >
               </button>

@@ -4,7 +4,7 @@ export default function ShareButton() {
   return (
     <div
       role="menubar"
-      class="flex items-center space-x-1 rounded-md bg-background p-1 border-0 lg:pt-0 pt-8"
+      class="flex items-center space-x-1 w-fit rounded-md bg-background lg:p-1 border-0"
       tabindex={0}
       style="outline: none;"
     >

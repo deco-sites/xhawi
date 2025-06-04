@@ -1,10 +1,19 @@
 import type { ComponentChildren } from "preact";
+import { JSX } from "preact";
+import { clx } from "../../../sdk/clx.ts";
 
-export default function Dot({ children }: {
+type Props = JSX.IntrinsicElements["button"] & {
   children: ComponentChildren;
-}) {
+};
+
+export default function Dot({ children, ...props }: Props) {
   return (
-    <button type="button" data-dot class="focus:outline-none group">
+    <button
+      type="button"
+      data-dot
+      {...props}
+      class={clx("focus:outline-none group", props.class, props.className)}
+    >
       {children}
     </button>
   );

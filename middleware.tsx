@@ -16,7 +16,7 @@ const DEFAULT_SEGMENT: Partial<Segment> = {
   channel: "1",
   cultureInfo: "en-US",
   currencyCode: "OMR",
-  currencySymbol: "$",
+  currencySymbol: "OMR",
   countryCode: "OMN",
 };
 
@@ -123,11 +123,18 @@ export default function middleware(
       "ar": "ar-OM",
     };
 
+    const countryCodes = {
+      "ar": "OMN",
+      "en": "USA",
+    };
+
     const segment: Partial<Segment> = {
       ...DEFAULT_SEGMENT,
       ...segmentFromCookie,
       cultureInfo: cultureInfos[language as keyof typeof cultureInfos] ||
         DEFAULT_SEGMENT.cultureInfo,
+      currencyCode: countryCodes[language as keyof typeof countryCodes] ||
+        DEFAULT_SEGMENT.currencyCode,
     };
     const token = serialize(segment);
 

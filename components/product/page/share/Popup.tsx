@@ -76,7 +76,7 @@ export default function SharePopup(props: Props) {
         data-controlled-by="share-button"
         data-state="closed"
         dir="ltr"
-        class="z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:hidden data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 slide-in-from-top-2 p-2"
+        class="z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:hidden data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 slide-in-from-top-2 p-2 mt-3 lg:mt-0"
         tabindex={-1}
       >
         <Social

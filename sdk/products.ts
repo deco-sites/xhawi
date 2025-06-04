@@ -1,4 +1,5 @@
-import { Product } from "apps/commerce/types.ts";
+import { Product, PropertyValue } from "apps/commerce/types.ts";
+import { relative } from "./url.ts";
 
 export function placeholderProduct(): Product {
   return {
@@ -22,14 +23,59 @@ export function getHighlight(product: Product, currentLanguage: string) {
   )?.value?.split("|")?.[index];
 }
 
-export function getColors(product: Product) {
-  return product.isVariantOf?.hasVariant?.map((variant) => ({
-    url: variant.url,
-    color: variant.additionalProperty?.find((property) =>
-      property.name === "Color"
-    )?.value?.split("|")?.[1],
-  })).filter((color, index, arr): color is { url: string; color: string } =>
-    !!color.color && !!color.url &&
-    index === arr.findIndex((c) => c.color === color.color)
+// Colors
+
+function getColor(properties?: PropertyValue[]) {
+  const property = properties?.find((property) => property.name === "Color");
+
+  if (!property) {
+    return undefined;
+  }
+
+  return {
+    hex: property.value?.split("|")?.[1],
+    name: property.value?.split("|")?.[0],
+  };
+}
+
+export function getColors(product: Product, currentLanguage: string) {
+  const currentColor = getColor(product.additionalProperty);
+
+  const colors = product.isVariantOf?.hasVariant?.map((variant) => {
+    const color = getColor(variant.additionalProperty);
+
+    return {
+      url: `/${currentLanguage}${relative(variant.url)}`,
+      hex: color?.hex,
+      name: color?.name,
+    };
+  }).filter((
+    color,
+    index,
+    arr,
+  ): color is { url: string; hex: string; name: string } =>
+    !!color.hex && !!color.url &&
+    index === arr.findIndex((c) => c.hex === color.hex)
   ) || [];
+
+  return {
+    colors,
+    currentColor,
+  };
+}
+
+// Specifications
+
+export function getSpecifications(product: Product) {
+  const specifications = product.isVariantOf?.additionalProperty?.filter((
+    property,
+  ) =>
+    property.valueReference === "SPECIFICATION" && property.name &&
+    property.value
+  ).map((property) => ({
+    name: property.name,
+    value: property.value,
+  }));
+
+  return specifications;
 }

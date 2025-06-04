@@ -6,14 +6,21 @@ interface Props {
 }
 
 export default function Colors(props: Props) {
-  const { colors } = props;
+  const { colors: { colors, currentColor } } = props;
 
   return (
     <div class="colors flex flex-col gap-2 border-t pt-6">
-      <div class="text-base font-medium">Color: White</div>
+      <div class="text-sm lg:text-base font-medium">
+        Color: {currentColor?.name}
+      </div>
       <div class="flex">
-        {colors.map((color, index) => (
-          <Color key={color.color} color={color.color} selected={index === 0} />
+        {colors.map((color) => (
+          <Color
+            key={color.hex}
+            color={color.hex}
+            selected={color.hex === currentColor?.hex}
+            productURL={color.url}
+          />
         ))}
       </div>
     </div>

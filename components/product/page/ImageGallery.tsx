@@ -1,4 +1,4 @@
-import { useScript } from "@deco/deco/hooks";
+import { useDevice, useScript } from "@deco/deco/hooks";
 import { ImageObject } from "apps/commerce/types.ts";
 import { useId } from "../../../sdk/useId.ts";
 import Icon from "../../ui/Icon.tsx";
@@ -37,11 +37,70 @@ function Thumbnail(props: { image: ImageObject; index: number; id: string }) {
 
 export default function ImageGallery(props: Props) {
   const { images: _images, highlight } = props;
+  const isMobile = useDevice() !== "desktop";
 
   const images: (ImageObject & { id: string })[] = _images.map((image) => ({
     ...image,
     id: useId(),
   }));
+
+  if (isMobile) {
+    return (
+      <Slider.Root
+        js={{ infinite: true, slidesToScroll: 1 }}
+        dir="ltr"
+      >
+        <Slider.Carousel>
+          {images.map((image, index) => (
+            <Slider.Item
+              index={index}
+              tabindex={-1}
+            >
+              <div class="react-transform-wrapper transform-component-module_wrapper__SPB86 ">
+                <div
+                  class="react-transform-component transform-component-module_content__FBWxo "
+                  style="transform: translate(0px, 0px) scale(1);"
+                >
+                  <img
+                    height={398}
+                    class="object-contain aspect-square"
+                    src={image.url}
+                    alt={image.alternateName}
+                  />
+                </div>
+              </div>
+              <div class="tools flex justify-center gap-1">
+                <button>
+                  <img
+                    alt="Zoom In"
+                    loading="lazy"
+                    width="28"
+                    height="28"
+                    decoding="async"
+                    data-nimg="1"
+                    class="!p-0"
+                    src="/icons/zoom-icon.svg"
+                    data-cookiecategory="21"
+                    style="color: transparent;"
+                  />
+                </button>
+              </div>
+            </Slider.Item>
+          ))}
+        </Slider.Carousel>
+        <Slider.Dots
+          class="flex items-center justify-center gap-5 mb-3"
+          dot={
+            <Slider.Dot class="size-5">
+              <span class="size-5 text-black leading-5 text-[28px] text-center opacity-25 group-data-[selected]:opacity-75">
+                •
+              </span>
+            </Slider.Dot>
+          }
+        />
+      </Slider.Root>
+    );
+  }
 
   return (
     <div
