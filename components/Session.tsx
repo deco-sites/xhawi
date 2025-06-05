@@ -304,6 +304,7 @@ export default function Session(props: Props) {
   return (
     <>
       <CartProvider
+        {...props}
         minicart={minicart!}
         labels={translations}
         dir={dir}

@@ -1,17 +1,18 @@
+import { type SectionProps } from "@deco/deco";
+import { useDevice, useScript, useSection } from "@deco/deco/hooks";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductCard from "../../components/product/ProductCard.tsx";
 import Filters from "../../components/search/Filters.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import { clx } from "../../sdk/clx.ts";
 import { useId } from "../../sdk/useId.ts";
 import { useOffer } from "../../sdk/useOffer.ts";
 import { useSendEvent } from "../../sdk/useSendEvent.ts";
+import Card from "../product/shelf/Card.tsx";
 import Breadcrumb from "../ui/Breadcrumb.tsx";
 import Drawer from "../ui/Drawer.tsx";
 import Sort from "./Sort.tsx";
-import { useDevice, useScript, useSection } from "@deco/deco/hooks";
-import { type SectionProps } from "@deco/deco";
+import { useI18n } from "../../sdk/i18n.ts";
 export interface Layout {
   /**
    * @title Pagination
@@ -49,6 +50,7 @@ const useUrlRebased = (overrides: string | undefined, base: string) => {
   return url;
 };
 function PageResult(props: SectionProps<typeof loader>) {
+  const { language, translations } = useI18n(props);
   const { layout, startingPage = 0, url, partial } = props;
   const page = props.page!;
   const { products, pageInfo } = page;
@@ -92,17 +94,21 @@ function PageResult(props: SectionProps<typeof loader>) {
         class={clx(
           "grid items-center",
           "grid-cols-2 gap-2",
-          "sm:grid-cols-4 sm:gap-10",
+          "sm:grid-cols-4",
           "w-full",
         )}
       >
-        {products?.map((product, index) => (
-          <ProductCard
+        {products?.map((product) => (
+          <Card
             key={`product-card-${product.productID}`}
             product={product}
-            preload={index === 0}
-            index={offset + index}
-            class="h-full min-w-[160px] max-w-[300px]"
+            currentLanguage={language}
+            labels={{
+              fewItemsLeft: translations.product.fewItemsLeft,
+              inStock: translations.product.inStock,
+              omr: translations.product.omr,
+              priceInclusiveOfVAT: translations.product.priceInclusiveOfVAT,
+            }}
           />
         ))}
       </div>
@@ -298,7 +304,7 @@ function Result(props: SectionProps<typeof loader>) {
   );
 }
 function SearchResult({ page, ...props }: SectionProps<typeof loader>) {
-  if (!page) {
+  if (!page?.products?.length) {
     return <NotFound />;
   }
   return <Result {...props} page={page} />;

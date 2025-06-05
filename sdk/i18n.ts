@@ -194,8 +194,10 @@ export function useI18n(
     };
   }
 
+  const trace = new Error().stack?.split("\n")[2];
   console.warn(
-    "useI18n is only available in server side rendered sections",
+    "useI18n is only available inside of first level sections",
+    trace,
   );
 
   return {
