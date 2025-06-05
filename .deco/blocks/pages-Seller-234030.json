@@ -1,0 +1,66 @@
+{
+  "name": "Seller - About",
+  "path": "/seller/:sellerId/about",
+  "sections": {
+    "__resolveType": "website/flags/multivariate.ts",
+    "variants": [
+      {
+        "value": [
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Header - AR"
+            }
+          },
+          {
+            "__resolveType": "site/sections/Sellers/SellerPage.tsx",
+            "sellerId": {
+              "__resolveType": "website/functions/requestToParam.ts",
+              "param": "sellerId"
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer - AR"
+            }
+          }
+        ],
+        "rule": {
+          "__resolveType": "site/matchers/language.ts",
+          "language": "ar"
+        }
+      },
+      {
+        "value": [
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Header"
+            }
+          },
+          {
+            "__resolveType": "site/sections/Sellers/SellerPage.tsx",
+            "sellerId": {
+              "__resolveType": "website/functions/requestToParam.ts",
+              "param": "sellerId"
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer"
+            }
+          }
+        ],
+        "rule": {
+          "__resolveType": "website/matchers/always.ts"
+        }
+      }
+    ]
+  },
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

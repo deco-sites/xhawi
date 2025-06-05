@@ -41,8 +41,6 @@ function getColor(properties?: PropertyValue[]) {
 export function getColors(product: Product, currentLanguage: string) {
   const currentColor = getColor(product.additionalProperty);
 
-  console.log(currentColor);
-
   const colors = product.isVariantOf?.hasVariant?.map((variant) => {
     const color = getColor(variant.additionalProperty);
 

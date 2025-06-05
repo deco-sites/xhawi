@@ -1,0 +1,86 @@
+{
+  "name": "Seller - Products",
+  "path": "/seller/:sellerId/products",
+  "sections": {
+    "__resolveType": "website/flags/multivariate.ts",
+    "variants": [
+      {
+        "value": [
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Header - AR"
+            }
+          },
+          {
+            "__resolveType": "site/sections/Product/SearchResult.tsx",
+            "layout": {
+              "pagination": "show-more"
+            },
+            "startingPage": 0,
+            "partial": "hideMore",
+            "page": {
+              "__resolveType": "vtex/loaders/legacy/productListingPage.ts",
+              "sort": "",
+              "filters": "dynamic",
+              "advancedConfigs": {
+                "includeOriginalAttributes": []
+              },
+              "count": 24
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer - AR"
+            }
+          }
+        ],
+        "rule": {
+          "__resolveType": "site/matchers/language.ts",
+          "language": "ar"
+        }
+      },
+      {
+        "value": [
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Header"
+            }
+          },
+          {
+            "__resolveType": "site/sections/Product/SearchResult.tsx",
+            "layout": {
+              "pagination": "show-more"
+            },
+            "startingPage": 0,
+            "partial": "hideMore",
+            "page": {
+              "__resolveType": "vtex/loaders/legacy/productListingPage.ts",
+              "count": 24,
+              "sort": "",
+              "filters": "dynamic",
+              "advancedConfigs": {
+                "includeOriginalAttributes": []
+              }
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer"
+            }
+          }
+        ],
+        "rule": {
+          "__resolveType": "website/matchers/always.ts"
+        }
+      }
+    ]
+  },
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}
