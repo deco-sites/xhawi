@@ -47,7 +47,7 @@ export default function GlobalTags({ revision }: Props) {
       />
 
       {/* Web Manifest */}
-      <link rel="manifest" href={asset("/site.webmanifest")} />
+      <link rel="manifest" href={asset("/manifest.json")} />
 
       <style
         type="text/css"

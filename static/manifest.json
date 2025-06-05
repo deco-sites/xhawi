@@ -2,7 +2,7 @@
     "name": "XHAWI: The First and Largest Omani Marketplace",
     "short_name": "XHAWI",
     "description": "XHAWI is the ultimate online marketplace for all your shopping needs in Oman. As the first and largest marketplace of its kind in the country, XHAWI brings together a diverse range of products from local and international sellers, offering an unparalleled shopping experience to users across Oman.",
-    "start_url": "/",
+    "start_url": "/app",
     "display": "standalone",
     "background_color": "#000200",
     "theme_color": "#baf86a",
