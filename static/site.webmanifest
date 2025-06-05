@@ -1,13 +1,21 @@
 {
-    "theme_color": "#5f9b9a",
-    "background_color": "#a3adcc",
-    "display": "fullscreen",
-    "scope": "/",
+    "name": "XHAWI: The First and Largest Omani Marketplace",
+    "short_name": "XHAWI",
+    "description": "XHAWI is the ultimate online marketplace for all your shopping needs in Oman. As the first and largest marketplace of its kind in the country, XHAWI brings together a diverse range of products from local and international sellers, offering an unparalleled shopping experience to users across Oman.",
     "start_url": "/",
-    "id": "/?source=pwa",
-    "short_name": "Storefront",
-    "orientation": "portrait",
-    "icons": [],
-    "name": "Storefront by Deco",
-    "description": "Storefront made with love in Rio"
+    "display": "standalone",
+    "background_color": "#000200",
+    "theme_color": "#baf86a",
+    "icons": [
+        {
+            "src": "/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
