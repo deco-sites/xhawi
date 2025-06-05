@@ -32,7 +32,7 @@
     "https://esm.sh/*preact-render-to-string@6.3.1": "npm:preact-render-to-string@6.4.2",
     "simple-git": "npm:simple-git@^3.25.0",
     "std/": "https://deno.land/std@0.190.0/",
-    "apps/": "https://cdn.jsdelivr.net/gh/deco-cx/apps@0.98.0/",
+    "apps/": "https://cdn.jsdelivr.net/gh/deco-cx/apps@259a5c30d02a749ef080025f3a16c5c736236840/",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2?external=preact&target=es2020",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1?external=preact&target=es2020",
     "daisyui": "npm:daisyui@4.6.0",
