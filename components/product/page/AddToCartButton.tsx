@@ -13,7 +13,14 @@ const onClick = () => {
   window.STOREFRONT.CART.addToCart(item, platformProps);
 };
 
-export default function AddToCartButton() {
+interface Props {
+  labels: {
+    addToCart: string;
+  };
+}
+
+export default function AddToCartButton(props: Props) {
+  const { labels } = props;
   return (
     <div class="flex-grow ">
       <div class="flex flex-col gap-2">
@@ -23,7 +30,7 @@ export default function AddToCartButton() {
           id="addToCartButton"
           hx-on:click={useScript(onClick)}
         >
-          Add to Cart
+          {labels.addToCart}
         </button>
       </div>
     </div>

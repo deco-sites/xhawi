@@ -100,7 +100,7 @@ export default function middleware(
 
   const [_, language] = path.split("/");
 
-  const IGNORE_PATHS = ["/deco", "/api", "/live"];
+  const IGNORE_PATHS = ["/deco", "/api", "/live", "/checkout"];
   const IS_FILE = /\.[^.]+$/;
 
   if (

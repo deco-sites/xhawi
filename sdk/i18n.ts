@@ -18,6 +18,17 @@ interface Translations {
     priceInclusiveOfVAT: string;
     fewItemsLeft: string;
     inStock: string;
+    payment: string;
+    soldBy: string;
+    shipsFrom: string;
+    addToCart: string;
+    description: string;
+    specifications: string;
+    sourceTransaction: string;
+    color: string;
+  };
+  breadcrumb: {
+    home: string;
   };
   minicart: {
     empty: {
@@ -28,6 +39,9 @@ interface Translations {
       };
       button: string;
     };
+    myCart: string;
+    subtotal: string;
+    goToCart: string;
   };
   currentLanguage: string;
   languages: typeof languages;
@@ -65,6 +79,9 @@ const translations: Record<Language, Translations> = {
         },
         button: "Start Shopping",
       },
+      myCart: "My Cart",
+      subtotal: "Subtotal",
+      goToCart: "Go to Cart",
     },
     currentLanguage: "English",
     languages,
@@ -73,6 +90,17 @@ const translations: Record<Language, Translations> = {
       priceInclusiveOfVAT: "Price inclusive of VAT",
       fewItemsLeft: "few items left",
       inStock: "In Stock",
+      payment: "Payment",
+      soldBy: "Sold by",
+      shipsFrom: "Ships from",
+      addToCart: "Add to Cart",
+      description: "Product Description",
+      specifications: "Product Specifications",
+      sourceTransaction: "Source transaction",
+      color: "Color",
+    },
+    breadcrumb: {
+      home: "Home",
     },
   },
   ar: {
@@ -99,6 +127,9 @@ const translations: Record<Language, Translations> = {
         },
         button: "ابدأ التسوق",
       },
+      myCart: "عربتي",
+      subtotal: "المجموع الفرعي",
+      goToCart: "اذهب إلى سلة التسوق",
     },
     currentLanguage: "عربي",
     languages,
@@ -107,6 +138,17 @@ const translations: Record<Language, Translations> = {
       priceInclusiveOfVAT: "السعر شامل ضريبة القيمة المضافة",
       fewItemsLeft: "كمية قليلة متبقية",
       inStock: "في المخزون",
+      payment: "الدفع",
+      soldBy: "تم البيع بواسطة",
+      shipsFrom: "يتم الشحن من",
+      addToCart: "أضف إلى السلة",
+      description: "وصف المنتج",
+      specifications: "مواصفات المنتج",
+      sourceTransaction: "معاملة آمنة",
+      color: "اللون",
+    },
+    breadcrumb: {
+      home: "الصفحة الرئيسة",
     },
   },
 };

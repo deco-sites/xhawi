@@ -292,9 +292,10 @@ export default function Cart(props: Props) {
               : (
                 <>
                   <div id="miniCart">
-                    <div class="flex items-start justify-between pt-[20px] px-[24px] w-[432px]">
-                      <div class="minicart-popup-my-cart-heading text-base font-medium ">
-                        My Cart ({count})
+                    <div class="flex items-start justify-between pt-[20px] px-[24px] w-[432px] rtl:flex-row-reverse">
+                      <div class="flex text-base font-medium ">
+                        <span>{translations.minicart.myCart}</span>{" "}
+                        <span>({count})</span>
                       </div>
                       <button
                         type="button"
@@ -326,10 +327,10 @@ export default function Cart(props: Props) {
                     </div>
                     <div class="flex justify-between px-6 pt-4 bg-omantel-smoke ">
                       <div
-                        class="text-[#656565]&quot; text-base font-medium "
+                        class="text-[#656565] text-base font-medium"
                         id="subtotal"
                       >
-                        Subtotal
+                        {translations.minicart.subtotal}
                       </div>
                       <div class="" id="price">
                         <div class="product-price text-base font-bold flex justify-end">
@@ -345,17 +346,18 @@ export default function Cart(props: Props) {
                     </div>
                   </div>
                   <div class="p-4 bg-omantel-smoke">
-                    <button
-                      type="button"
+                    <a
+                      href="/checkout"
                       class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 p-6 bg-omantel-electric-green font-Rubik text-sm text-black hover:bg-omantel-dark-green active:bg-omantel-dark-green focus:bg-omantel-dark-green active:border-2 active:border-omantel-dark-green focus:ring-2 active:ring-omantel-dark-green focus:ring-omantel-dark-green disabled:bg-omantel-platinum disabled:text-omantel-grey w-full"
                       id="gotoCart"
                     >
                       <Icon
                         id="cart-button"
                         size={24}
-                        class="mr-4"
-                      />Go to Cart
-                    </button>
+                        class="mr-4 rtl:ml-4 rtl:mr-0"
+                      />
+                      {translations.minicart.goToCart}
+                    </a>
                   </div>
                 </>
               )}

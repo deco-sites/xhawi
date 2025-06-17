@@ -1,5 +1,6 @@
 import { useDevice } from "@deco/deco/hooks";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
+import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import AddToCartButton from "../../components/product/page/AddToCartButton.tsx";
 import Breadcrumb from "../../components/product/page/Breadcrumb.tsx";
 import Colors from "../../components/product/page/colors/Colors.tsx";
@@ -10,6 +11,7 @@ import ImageGallery from "../../components/product/page/ImageGallery.tsx";
 import QuantitySelector from "../../components/product/page/QuantitySelector.tsx";
 import ShareButton from "../../components/product/page/share/Button.tsx";
 import SharePopup from "../../components/product/page/share/Popup.tsx";
+import Specifications from "../../components/product/page/specifications/Specifications.tsx";
 import Dropdown from "../../components/ui/Dropdown.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import Section from "../../components/ui/Section.tsx";
@@ -21,7 +23,6 @@ import {
   getSpecifications,
 } from "../../sdk/products.ts";
 import { useOffer } from "../../sdk/useOffer.ts";
-import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface Props {
   /** @title Integration */
@@ -65,7 +66,11 @@ export default function ProductDetails(props: Props) {
   const brand = product.brand;
   const highlight = getHighlight(product, language);
   const colors = getColors(product, language);
-  const specifications = getSpecifications(product);
+  const {
+    productSpecifications,
+    selectedPossibilities,
+    possibilities,
+  } = getSpecifications(product, { language });
 
   const analyticsItem = mapProductToAnalyticsItem({
     product,
@@ -90,7 +95,10 @@ export default function ProductDetails(props: Props) {
           },
         }))}
       />
-      <Breadcrumb breadcrumbList={breadcrumbList} />
+      <Breadcrumb
+        breadcrumbList={breadcrumbList}
+        labels={translations.breadcrumb}
+      />
 
       <div class="container-fluid">
         <div class="container-width">
@@ -133,7 +141,16 @@ export default function ProductDetails(props: Props) {
                   </div>
                 </div>
                 <div class="pb-4">
-                  <Colors colors={colors} />
+                  <Colors
+                    colors={colors}
+                    labels={translations.product}
+                  />
+                  {possibilities && selectedPossibilities && (
+                    <Specifications
+                      possibilities={possibilities}
+                      selectedPossibilities={selectedPossibilities}
+                    />
+                  )}
                 </div>
                 <div>
                   <div class="pt-3">
@@ -153,25 +170,29 @@ export default function ProductDetails(props: Props) {
                 <div class="mb-2 flex flex-wrap items-center justify-between gap-3">
                   <QuantitySelector />
                   <div class="flex-grow">
-                    <AddToCartButton />
+                    <AddToCartButton
+                      labels={translations.product}
+                    />
                   </div>
                 </div>
                 <div class="border-b py-6">
                   <div class="mb-2 flex gap-3 text-sm">
                     <Icon id="shipping" size={20} />
-                    <div>Ships from:</div>
+                    <div>{translations.product.shipsFrom}:</div>
                     <div class="font-semibold">{sellerName}</div>
                   </div>
                   <div class="mb-2 flex gap-3 text-sm">
                     <Icon id="sold-by" size={20} />
-                    <div>Sold by:</div>
+                    <div>{translations.product.soldBy}:</div>
                     <div class="font-semibold">{sellerName}</div>
                     <span class="pl-2"></span>
                   </div>
                   <div class="flex gap-3 text-sm">
                     <Icon id="secure-payment" size={20} />
-                    <div>Payment:</div>
-                    <div class="font-semibold">Secure transaction</div>
+                    <div>{translations.product.payment}:</div>
+                    <div class="font-semibold">
+                      {translations.product.sourceTransaction}
+                    </div>
                   </div>
                 </div>
                 {deliveryInformation && (
@@ -187,7 +208,9 @@ export default function ProductDetails(props: Props) {
                       class="border-b mb-6 mt-10 rounded-lg border-none bg-omantel-smoke p-6"
                     >
                       <Dropdown.Trigger class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline peer-checked:[&>svg]:rotate-180">
-                        <h3 class="text-xl">Product Description</h3>
+                        <h3 class="text-xl">
+                          {translations.product.description}
+                        </h3>
                       </Dropdown.Trigger>
                       <Dropdown.Content class="text-sm transition-all duration-200">
                         {description}
@@ -199,10 +222,12 @@ export default function ProductDetails(props: Props) {
                       class="border-b rounded-lg border-none bg-omantel-smoke p-6"
                     >
                       <Dropdown.Trigger class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline peer-checked:[&>svg]:rotate-180">
-                        <h3 class="text-xl">Product Specifications</h3>
+                        <h3 class="text-xl">
+                          {translations.product.specifications}
+                        </h3>
                       </Dropdown.Trigger>
                       <Dropdown.Content class="text-sm transition-all duration-200">
-                        {specifications?.map((specification) => (
+                        {productSpecifications?.map((specification) => (
                           <div class="flex w-[308px] flex-col justify-start gap-1 border-[#DDD] py-6 pr-2 xl:w-[308px] [&:nth-child(n+5)]:border-t">
                             <div class="product-specification-content-model text-base font-bold">
                               {specification.name}
@@ -256,7 +281,7 @@ export default function ProductDetails(props: Props) {
                       </div>
                       <div>
                         <div class="flex items-center gap-3 text-omantel-secondary-blue">
-                          <span class="ar-row-reverse">
+                          <span class="flex rtl:flex-row-reverse">
                             <span class=" omr-label text-[16px]  font-bold">
                               {translations.product.omr}
                             </span>{" "}
@@ -270,13 +295,24 @@ export default function ProductDetails(props: Props) {
                         </label>
                       </div>
                     </div>
-                    {colors.colors.length > 1 && <Colors colors={colors} />}
-                    <div class="ar-row-reverse ar-justify-content-fe flex flex-row gap-6 border-t pt-6">
+                    {colors.colors.length > 1 && (
+                      <Colors
+                        colors={colors}
+                        labels={translations.product}
+                      />
+                    )}
+                    {possibilities && selectedPossibilities && (
+                      <Specifications
+                        possibilities={possibilities}
+                        selectedPossibilities={selectedPossibilities}
+                      />
+                    )}
+                    <div class="flex flex-row gap-6 border-t pt-6 rtl:flex-row-reverse rtl:justify-end">
                       <div class="flex flex-row justify-center items-center gap-4 text-sm">
                         <Icon id="shipping" size={20} />
                         <div class="flex flex-col justify-center">
                           <div class="ships-from text-omantel-faded-black">
-                            Ships from:
+                            {translations.product.shipsFrom}:
                           </div>
                           <div class="ships-from-seller-name font-medium">
                             {sellerName}
@@ -287,7 +323,7 @@ export default function ProductDetails(props: Props) {
                         <Icon id="sold-by" size={20} />
                         <div class="flex flex-col justify-center">
                           <div class="sold-by text-omantel-faded-black">
-                            Sold by:
+                            {translations.product.soldBy}:
                           </div>
                           <a
                             href={`/seller/${seller}/about`}
@@ -301,17 +337,19 @@ export default function ProductDetails(props: Props) {
                         <Icon id="secure-payment" size={20} />
                         <div class="flex flex-col justify-center">
                           <div class="payment text-omantel-faded-black">
-                            Payment:
+                            {translations.product.payment}:
                           </div>
                           <div class="payment-text font-medium">
-                            Secure transaction
+                            {translations.product.sourceTransaction}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="flex flex-wrap items-center gap-2 border-t pt-6">
                       <QuantitySelector />
-                      <AddToCartButton />
+                      <AddToCartButton
+                        labels={translations.product}
+                      />
                     </div>
                     {deliveryInformation && (
                       <div class="flex flex-row gap-6 border-t pt-6">
@@ -329,7 +367,7 @@ export default function ProductDetails(props: Props) {
                     >
                       <Dropdown.Trigger class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline peer-checked:[&>svg]:rotate-180">
                         <h3 class="text-2xl font-semibold">
-                          Product Description
+                          {translations.product.description}
                         </h3>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -357,7 +395,7 @@ export default function ProductDetails(props: Props) {
                     >
                       <Dropdown.Trigger class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline peer-checked:[&>svg]:rotate-180">
                         <h3 class="text-2xl font-semibold">
-                          Product Specifications
+                          {translations.product.specifications}
                         </h3>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -376,7 +414,7 @@ export default function ProductDetails(props: Props) {
                       </Dropdown.Trigger>
                       <Dropdown.Content class="text-sm transition-all duration-200">
                         <div class="product-specification-full-content border-l-child relative grid grid-cols-[25%_25%_25%_25%] py-4">
-                          {specifications?.map((specification) => (
+                          {productSpecifications?.map((specification) => (
                             <div class="flex w-[308px] flex-col justify-start gap-1 border-[#DDD] py-6 pr-2 xl:w-[308px] [&:nth-child(n+5)]:border-t">
                               <div class="product-specification-content-model text-base font-bold">
                                 {specification.name}

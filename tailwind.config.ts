@@ -25,6 +25,7 @@ export default {
         "omantel-dark-green": "#95C655",
         "omantel-electric-green": "#BAF76A",
         "omantel-electric-green-1": "#E3FCC3",
+        "omantel-border-green": "#BAF76A",
         "omantel-faded-black": "#222222",
         "omantel-grey": "#808080",
         "omantel-grey-3": "#656464",

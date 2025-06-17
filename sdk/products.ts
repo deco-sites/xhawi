@@ -26,15 +26,23 @@ export function getHighlight(product: Product, currentLanguage: string) {
 // Colors
 
 function getColor(properties?: PropertyValue[]) {
-  const property = properties?.find((property) => property.name === "Color");
+  const property = properties?.find((property) =>
+    property.name === "Color" || property.name === "اللون"
+  );
+
+  const isArabic = property?.name === "اللون";
 
   if (!property) {
     return undefined;
   }
 
   return {
-    hex: property.value?.split("|")?.[1],
-    name: property.value?.split("|")?.[0],
+    hex: isArabic
+      ? property.value?.split("|")?.[0]
+      : property.value?.split("|")?.[1],
+    name: isArabic
+      ? property.value?.split("|")?.[1]
+      : property.value?.split("|")?.[0],
   };
 }
 
@@ -66,8 +74,24 @@ export function getColors(product: Product, currentLanguage: string) {
 
 // Specifications
 
-export function getSpecifications(product: Product) {
-  const specifications = product.isVariantOf?.additionalProperty?.filter((
+export function getSpecifications(
+  product: Product,
+  { language }: { language: string },
+) {
+  const variants = product.isVariantOf?.hasVariant;
+
+  const productSpecifications = product.isVariantOf?.additionalProperty?.filter(
+    (
+      property,
+    ) =>
+      property.valueReference === "SPECIFICATION" && property.name &&
+      property.value,
+  ).map((property) => ({
+    name: property.name,
+    value: property.value,
+  }));
+
+  const skuSpecifications = product.additionalProperty?.filter((
     property,
   ) =>
     property.valueReference === "SPECIFICATION" && property.name &&
@@ -77,5 +101,85 @@ export function getSpecifications(product: Product) {
     value: property.value,
   }));
 
-  return specifications;
+  const currentColor = getColor(product.additionalProperty);
+
+  const allPossibilities =
+    variants?.flatMap((variant) =>
+      variant.additionalProperty?.filter((
+        property,
+      ) =>
+        property.valueReference === "SPECIFICATION" && property.name &&
+        property.value
+      )
+    ).reduce<Record<string, string[]>>(
+      (acc, curr) => {
+        if (
+          !curr || !curr.name || !curr.value ||
+          curr.name === "Color" || curr.name === "اللون"
+        ) {
+          return acc;
+        }
+
+        acc[curr.name] ??= [];
+        if (!acc[curr.name].includes(curr.value)) {
+          acc[curr.name].push(curr.value);
+        }
+
+        return acc;
+      },
+      {},
+    ) || {};
+
+  const possibilities: Record<
+    string,
+    { value: string; url?: string; inStock: boolean }[]
+  > = Object.entries(
+    allPossibilities,
+  ).reduce<Record<string, { value: string; url?: string; inStock: boolean }[]>>(
+    (acc, [name, values]) => {
+      const variantsColor = variants?.filter((variant) =>
+        getColor(variant.additionalProperty)?.name === currentColor?.name
+      );
+
+      acc[name] = values.map((value) => {
+        const variant = variantsColor?.find((variant) =>
+          variant.additionalProperty?.some((property) =>
+            property.name === name && property.value === value
+          )
+        );
+
+        return ({
+          value,
+          url: variant ? `/${language}${relative(variant.url)}` : undefined,
+          inStock: variant?.offers?.offers?.some(
+            (offer) => offer.availability === "https://schema.org/InStock",
+          ) || false,
+        });
+      });
+
+      return acc;
+    },
+    {},
+  );
+
+  const selectedPossibilities = skuSpecifications?.reduce<
+    Record<string, string>
+  >(
+    (acc, curr) => {
+      if (!curr || !curr.name || !curr.value) {
+        return acc;
+      }
+
+      acc[curr.name] ??= curr.value;
+
+      return acc;
+    },
+    {},
+  );
+
+  return {
+    productSpecifications,
+    possibilities,
+    selectedPossibilities,
+  };
 }

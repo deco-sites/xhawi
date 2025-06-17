@@ -2,11 +2,11 @@
   "__resolveType": "site/apps/deco/vtex.ts",
   "defaultSegment": {
     "channelPrivacy": "public",
-    "cultureInfo": "en-US",
+    "cultureInfo": "ar-OM",
     "currencyCode": "OMR"
   },
   "platform": "vtex",
   "account": "omanshop",
-  "publicUrl": "https://xhawi.com",
+  "publicUrl": "https://omanshop.vtexcommercestable.com.br",
   "salesChannel": "1"
 }

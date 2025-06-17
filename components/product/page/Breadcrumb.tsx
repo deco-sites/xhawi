@@ -47,10 +47,13 @@ function Item(props: { name: string; href: string; isLast?: boolean }) {
 
 interface Props {
   breadcrumbList: BreadcrumbList;
+  labels: {
+    home: string;
+  };
 }
 
 export default function Breadcrumb(props: Props) {
-  const { breadcrumbList } = props;
+  const { breadcrumbList, labels } = props;
 
   return (
     <div class="p-4 lg:min-h-[100px] lg:px-12 lg:py-6">
@@ -59,7 +62,7 @@ export default function Breadcrumb(props: Props) {
           <ol class="flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5 pb-3">
             <Item
               href="/"
-              name="Home"
+              name={labels.home}
             />
             {breadcrumbList.itemListElement.map((item, index) => (
               <Item

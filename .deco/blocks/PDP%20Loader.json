@@ -4,7 +4,7 @@
       "param": "slug",
       "__resolveType": "website/functions/requestToParam.ts"
     },
-    "__resolveType": "vtex/loaders/legacy/productDetailsPage.ts",
+    "__resolveType": "vtex/loaders/intelligentSearch/productDetailsPage.ts",
     "advancedConfigs": {
       "includeOriginalAttributes": []
     }
